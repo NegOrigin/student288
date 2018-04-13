@@ -6,9 +6,9 @@ public class StudentState {
 	private int school;
 	private int social;
 
-	private int confidence;
 	private int health;
-	private int shape;
+	private int relaxation;
+	private int vitality;
 	
 	private int happiness;
 	
@@ -46,9 +46,9 @@ public class StudentState {
 			break;
 		}
 
-		setConfidence((int)(Math.random()*30)+70);
 		setHealth((int)(Math.random()*30)+70);
-		setShape((int)(Math.random()*30)+70);
+		setRelaxation((int)(Math.random()*30)+70);
+		setVitality((int)(Math.random()*30)+70);
 		
 		setHappiness(0);
 	}
@@ -58,9 +58,9 @@ public class StudentState {
 		setLove(state.getLove());
 		setSchool(state.getSchool());
 		setSocial(state.getSocial());
-		setConfidence(state.getConfidence());
 		setHealth(state.getHealth());
-		setShape(state.getShape());
+		setRelaxation(state.getRelaxation());
+		setVitality(state.getVitality());
 		setHappiness(state.getHappiness());
 	}
 
@@ -96,14 +96,6 @@ public class StudentState {
 		this.social = social;
 	}
 
-	public int getConfidence() {
-		return confidence;
-	}
-
-	private void setConfidence(int confidence) {
-		this.confidence = confidence;
-	}
-
 	public int getHealth() {
 		return health;
 	}
@@ -112,12 +104,20 @@ public class StudentState {
 		this.health = health;
 	}
 
-	public int getShape() {
-		return shape;
+	public int getRelaxation() {
+		return relaxation;
 	}
 
-	private void setShape(int shape) {
-		this.shape = shape;
+	private void setRelaxation(int relaxation) {
+		this.relaxation = relaxation;
+	}
+
+	public int getVitality() {
+		return vitality;
+	}
+
+	private void setVitality(int vitality) {
+		this.vitality = vitality;
 	}
 
 	public int getHappiness() {

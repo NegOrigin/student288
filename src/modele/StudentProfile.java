@@ -6,9 +6,9 @@ public class StudentProfile {
 	private int school;
 	private int social;
 
-	private int confidence;
 	private int health;
-	private int shape;
+	private int relaxation;
+	private int vitality;
 	
 	public StudentProfile(StudentType type) {
 		switch (type.getName()) {
@@ -44,9 +44,9 @@ public class StudentProfile {
 			break;
 		}
 
-		setConfidence((int)(Math.random()*30)+40);
 		setHealth((int)(Math.random()*30)+40);
-		setShape((int)(Math.random()*30)+40);
+		setRelaxation((int)(Math.random()*30)+40);
+		setVitality((int)(Math.random()*30)+40);
 	}
 	
 	public StudentProfile(StudentProfile profile) {
@@ -54,9 +54,9 @@ public class StudentProfile {
 		setLove(profile.getLove());
 		setSchool(profile.getSchool());
 		setSocial(profile.getSocial());
-		setConfidence(profile.getConfidence());
 		setHealth(profile.getHealth());
-		setShape(profile.getShape());
+		setRelaxation(profile.getRelaxation());
+		setVitality(profile.getVitality());
 	}
 
 	public int getGaming() {
@@ -91,14 +91,6 @@ public class StudentProfile {
 		this.social = social;
 	}
 
-	public int getConfidence() {
-		return confidence;
-	}
-
-	private void setConfidence(int confidence) {
-		this.confidence = confidence;
-	}
-
 	public int getHealth() {
 		return health;
 	}
@@ -107,11 +99,19 @@ public class StudentProfile {
 		this.health = health;
 	}
 
-	public int getShape() {
-		return shape;
+	public int getRelaxation() {
+		return relaxation;
 	}
 
-	private void setShape(int shape) {
-		this.shape = shape;
+	private void setRelaxation(int relaxation) {
+		this.relaxation = relaxation;
+	}
+
+	public int getVitality() {
+		return vitality;
+	}
+
+	private void setVitality(int vitality) {
+		this.vitality = vitality;
 	}
 }

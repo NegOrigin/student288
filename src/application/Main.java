@@ -24,17 +24,17 @@ public class Main extends Application {
 			System.out.print("Love : "+student.getProfile().getLove()+", ");
 			System.out.print("School : "+student.getProfile().getSchool()+", ");
 			System.out.println("Social : "+student.getProfile().getSocial()+", ");
-			System.out.print("Confidence : "+student.getProfile().getConfidence()+", ");
 			System.out.print("Health : "+student.getProfile().getHealth()+", ");
-			System.out.println("Shape : "+student.getProfile().getShape());
+			System.out.print("Relaxation : "+student.getProfile().getRelaxation()+", ");
+			System.out.println("Vitality : "+student.getProfile().getVitality());
 			System.out.println("Etat :");
 			System.out.print("Gaming : "+student.getState().getGaming()+", ");
 			System.out.print("Love : "+student.getState().getLove()+", ");
 			System.out.print("School : "+student.getState().getSchool()+", ");
 			System.out.println("Social : "+student.getState().getSocial()+", ");
-			System.out.print("Confidence : "+student.getState().getConfidence()+", ");
 			System.out.print("Health : "+student.getState().getHealth()+", ");
-			System.out.println("Shape : "+student.getState().getShape());
+			System.out.print("Relaxation : "+student.getState().getRelaxation()+", ");
+			System.out.println("Vitality : "+student.getState().getVitality());
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
