@@ -24,7 +24,8 @@ public class Student {
 		return "Nom : "+name+",\n"
 			+"Type : "+type+",\n"
 			+"Profil :\n"+profile+",\n"
-			+"Etat :\n"+state;
+			+"Etat :\n"+state+",\n"
+			+"Bonheur : "+calculateHappiness();
 	}
 
 	public String getName() {
@@ -61,6 +62,7 @@ public class Student {
 	
 	public int calculateHappiness() {
 		int happiness = 0;
+		
 		return happiness;
 	}
 }
