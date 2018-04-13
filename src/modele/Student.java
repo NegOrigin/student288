@@ -11,7 +11,6 @@ public class Student {
 		setType(new StudentType());
 		setProfile(new StudentProfile(type));
 		setState(new StudentState(type));
-		state.calculateHappiness(profile);
 	}
 	
 	public Student(Student student) {
@@ -19,6 +18,13 @@ public class Student {
 		setType(student.getType());
 		setProfile(new StudentProfile(student.getProfile()));
 		setState(new StudentState(student.getState()));
+	}
+	
+	public String toString() {
+		return "Nom : "+name+",\n"
+			+"Type : "+type+",\n"
+			+"Profil :\n"+profile+",\n"
+			+"Etat :\n"+state;
 	}
 
 	public String getName() {
@@ -51,5 +57,10 @@ public class Student {
 
 	private void setState(StudentState state) {
 		this.state = state;
+	}
+	
+	public int calculateHappiness() {
+		int happiness = 0;
+		return happiness;
 	}
 }

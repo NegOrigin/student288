@@ -58,6 +58,16 @@ public class StudentProfile {
 		setRelaxation(profile.getRelaxation());
 		setVitality(profile.getVitality());
 	}
+	
+	public String toString() {
+		return "Gaming : "+getGaming()+", "
+			+"Love : "+getLove()+", "
+			+"School : "+getSchool()+", "
+			+"Social : "+getSocial()+",\n"
+			+"Health : "+getHealth()+", "
+			+"Relaxation : "+getRelaxation()+", "
+			+"Vitality : "+getVitality();
+	}
 
 	public int getGaming() {
 		return gaming;

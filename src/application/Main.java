@@ -17,24 +17,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();*/
 			Student student = new Student("Je suis un etudiant test");
-			System.out.println("Nom : "+student.getName());
-			System.out.println("Type : "+student.getType().getName());
-			System.out.println("Profil :");
-			System.out.print("Gaming : "+student.getProfile().getGaming()+", ");
-			System.out.print("Love : "+student.getProfile().getLove()+", ");
-			System.out.print("School : "+student.getProfile().getSchool()+", ");
-			System.out.println("Social : "+student.getProfile().getSocial()+", ");
-			System.out.print("Health : "+student.getProfile().getHealth()+", ");
-			System.out.print("Relaxation : "+student.getProfile().getRelaxation()+", ");
-			System.out.println("Vitality : "+student.getProfile().getVitality());
-			System.out.println("Etat :");
-			System.out.print("Gaming : "+student.getState().getGaming()+", ");
-			System.out.print("Love : "+student.getState().getLove()+", ");
-			System.out.print("School : "+student.getState().getSchool()+", ");
-			System.out.println("Social : "+student.getState().getSocial()+", ");
-			System.out.print("Health : "+student.getState().getHealth()+", ");
-			System.out.print("Relaxation : "+student.getState().getRelaxation()+", ");
-			System.out.println("Vitality : "+student.getState().getVitality());
+			System.out.println(student);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

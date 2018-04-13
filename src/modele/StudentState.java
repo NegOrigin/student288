@@ -10,8 +10,6 @@ public class StudentState {
 	private int relaxation;
 	private int vitality;
 	
-	private int happiness;
-	
 	public StudentState(StudentType type) {
 		switch (type.getName()) {
 		case "Gamer":
@@ -49,8 +47,6 @@ public class StudentState {
 		setHealth((int)(Math.random()*30)+70);
 		setRelaxation((int)(Math.random()*30)+70);
 		setVitality((int)(Math.random()*30)+70);
-		
-		setHappiness(0);
 	}
 	
 	public StudentState(StudentState state) {
@@ -61,7 +57,16 @@ public class StudentState {
 		setHealth(state.getHealth());
 		setRelaxation(state.getRelaxation());
 		setVitality(state.getVitality());
-		setHappiness(state.getHappiness());
+	}
+	
+	public String toString() {
+		return "Gaming : "+getGaming()+", "
+			+"Love : "+getLove()+", "
+			+"School : "+getSchool()+", "
+			+"Social : "+getSocial()+",\n"
+			+"Health : "+getHealth()+", "
+			+"Relaxation : "+getRelaxation()+", "
+			+"Vitality : "+getVitality();
 	}
 
 	public int getGaming() {
@@ -118,19 +123,5 @@ public class StudentState {
 
 	private void setVitality(int vitality) {
 		this.vitality = vitality;
-	}
-
-	public int getHappiness() {
-		return happiness;
-	}
-
-	private void setHappiness(int happiness) {
-		this.happiness = happiness;
-	}
-	
-	public void calculateHappiness(StudentProfile profile) {
-		int happiness = 0;
-		//Calcul
-		setHappiness(happiness);
 	}
 }
