@@ -5,20 +5,58 @@ public class StudentProfile {
 	private int love;
 	private int school;
 	private int social;
-	
+
+	private int confidence;
 	private int health;
-	private int stress;
-	private int tiredness;
+	private int shape;
 	
 	public StudentProfile(StudentType type) {
-		setGaming(0);
-		setLove(0);
-		setSchool(0);
-		setSocial(0);
+		switch (type.getName()) {
+		case "Gamer":
+			setGaming((int)(Math.random()*20)+70);
+			setLove((int)(Math.random()*50)+25);
+			setSchool((int)(Math.random()*50)+25);
+			setSocial((int)(Math.random()*50)+25);
+			break;
+		case "Romantic":
+			setGaming((int)(Math.random()*50)+25);
+			setLove((int)(Math.random()*20)+70);
+			setSchool((int)(Math.random()*50)+25);
+			setSocial((int)(Math.random()*50)+25);
+			break;
+		case "Studious":
+			setGaming((int)(Math.random()*50)+25);
+			setLove((int)(Math.random()*50)+25);
+			setSchool((int)(Math.random()*20)+70);
+			setSocial((int)(Math.random()*50)+25);
+			break;
+		case "Social":
+			setGaming((int)(Math.random()*50)+25);
+			setLove((int)(Math.random()*50)+25);
+			setSchool((int)(Math.random()*50)+25);
+			setSocial((int)(Math.random()*20)+70);
+			break;
+		default:
+			setGaming((int)(Math.random()*100));
+			setLove((int)(Math.random()*100));
+			setSchool((int)(Math.random()*100));
+			setSocial((int)(Math.random()*100));
+			break;
+		}
 
-		setHealth(0);
-		setStress(0);
-		setTiredness(0);
+		setConfidence((int)(Math.random()*30)+40);
+		setHealth((int)(Math.random()*30)+40);
+		setShape((int)(Math.random()*30)+40);
+	}
+	
+	public StudentProfile(StudentProfile profile) {
+		setGaming(profile.getGaming());
+		setLove(profile.getLove());
+		setSchool(profile.getSchool());
+		setSocial(profile.getSocial());
+		setConfidence(profile.getConfidence());
+		setHealth(profile.getHealth());
+		setShape(profile.getShape());
 	}
 
 	public int getGaming() {
@@ -53,6 +91,14 @@ public class StudentProfile {
 		this.social = social;
 	}
 
+	public int getConfidence() {
+		return confidence;
+	}
+
+	private void setConfidence(int confidence) {
+		this.confidence = confidence;
+	}
+
 	public int getHealth() {
 		return health;
 	}
@@ -61,19 +107,11 @@ public class StudentProfile {
 		this.health = health;
 	}
 
-	public int getStress() {
-		return stress;
+	public int getShape() {
+		return shape;
 	}
 
-	private void setStress(int stress) {
-		this.stress = stress;
-	}
-
-	public int getTiredness() {
-		return tiredness;
-	}
-
-	private void setTiredness(int tiredness) {
-		this.tiredness = tiredness;
+	private void setShape(int shape) {
+		this.shape = shape;
 	}
 }

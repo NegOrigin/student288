@@ -11,6 +11,14 @@ public class Student {
 		setType(new StudentType());
 		setProfile(new StudentProfile(type));
 		setState(new StudentState(type));
+		state.calculateHappiness(profile);
+	}
+	
+	public Student(Student student) {
+		setName(student.getName());
+		setType(student.getType());
+		setProfile(new StudentProfile(student.getProfile()));
+		setState(new StudentState(student.getState()));
 	}
 
 	public String getName() {
