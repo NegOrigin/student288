@@ -2,13 +2,15 @@ package modele;
 
 public class Student {
 	private String name;
-	private Profile profile;
-	private State state;
+	private StudentType type;
+	private StudentProfile profile;
+	private StudentState state;
 	
 	public Student(String name) {
 		setName(name);
-		setProfile(new Profile());
-		setState(new State());
+		setType(new StudentType());
+		setProfile(new StudentProfile(type));
+		setState(new StudentState(type));
 	}
 
 	public String getName() {
@@ -19,19 +21,27 @@ public class Student {
 		this.name = name;
 	}
 
-	public Profile getProfile() {
+	public StudentType getType() {
+		return type;
+	}
+
+	private void setType(StudentType type) {
+		this.type = type;
+	}
+
+	public StudentProfile getProfile() {
 		return profile;
 	}
 
-	private void setProfile(Profile profile) {
+	private void setProfile(StudentProfile profile) {
 		this.profile = profile;
 	}
 
-	public State getState() {
+	public StudentState getState() {
 		return state;
 	}
 
-	private void setState(State state) {
+	private void setState(StudentState state) {
 		this.state = state;
 	}
 }
