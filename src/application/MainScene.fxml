@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainSceneController">
   <children>
       <HBox prefWidth="1080.0" VBox.vgrow="ALWAYS">
          <children>
@@ -24,7 +24,7 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitWidth="680.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="activityImageView" fitWidth="680.0" pickOnBounds="true" preserveRatio="true">
                            <viewport>
                               <Rectangle2D />
                            </viewport>
@@ -41,14 +41,14 @@
                                           <Image url="@../images/happy.png" />
                                        </image>
                                     </ImageView>
-                                    <ProgressBar prefHeight="18.0" prefWidth="147.0" progress="0.49">
+                                    <ProgressBar fx:id="happinessProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.49">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" top="6.0" />
                                        </HBox.margin>
                                     </ProgressBar>
                                  </children>
                                  <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </HBox>
                               <Separator prefWidth="200.0" />
@@ -59,7 +59,7 @@
                                           <Image url="@../images/game-controller.png" />
                                        </image>
                                     </ImageView>
-                                    <ProgressBar prefHeight="18.0" prefWidth="147.0" progress="0.79">
+                                    <ProgressBar fx:id="gamingProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.79">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" top="6.0" />
                                        </HBox.margin>
@@ -76,7 +76,7 @@
                                           <Image url="@../images/like.png" />
                                        </image>
                                     </ImageView>
-                                    <ProgressBar prefHeight="18.0" prefWidth="147.0" progress="0.56">
+                                    <ProgressBar fx:id="loveProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.56">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" top="6.0" />
                                        </HBox.margin>
@@ -93,7 +93,7 @@
                                           <Image url="@../images/blackboard.png" />
                                        </image>
                                     </ImageView>
-                                    <ProgressBar prefHeight="18.0" prefWidth="147.0" progress="0.24">
+                                    <ProgressBar fx:id="schoolProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.24">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" top="6.0" />
                                        </HBox.margin>
@@ -110,7 +110,7 @@
                                           <Image url="@../images/friendship.png" />
                                        </image>
                                     </ImageView>
-                                    <ProgressBar prefHeight="18.0" prefWidth="147.0" progress="0.69">
+                                    <ProgressBar fx:id="socialProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.69">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" top="6.0" />
                                        </HBox.margin>
@@ -128,7 +128,7 @@
                                           <Image url="@../images/hospital.png" />
                                        </image>
                                     </ImageView>
-                                    <ProgressBar prefHeight="18.0" prefWidth="147.0" progress="0.94">
+                                    <ProgressBar fx:id="healthProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.94">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" top="6.0" />
                                        </HBox.margin>
@@ -145,7 +145,7 @@
                                           <Image url="@../images/lotus-position.png" />
                                        </image>
                                     </ImageView>
-                                    <ProgressBar prefHeight="18.0" prefWidth="147.0" progress="0.64">
+                                    <ProgressBar fx:id="relaxationProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.64">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" top="6.0" />
                                        </HBox.margin>
@@ -162,7 +162,7 @@
                                           <Image url="@../images/sleep.png" />
                                        </image>
                                     </ImageView>
-                                    <ProgressBar prefHeight="18.0" prefWidth="147.0" progress="0.79">
+                                    <ProgressBar fx:id="vitalityProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.79">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" top="6.0" />
                                        </HBox.margin>
@@ -173,20 +173,20 @@
                                  </VBox.margin>
                               </HBox>
                               <Separator prefWidth="200.0" />
-                              <ComboBox prefHeight="25.0" prefWidth="180.0" promptText="Type">
+                              <ComboBox fx:id="addEventTypeComboBox" prefHeight="25.0" prefWidth="180.0" promptText="Type">
                                  <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="10.0" />
+                                    <Insets left="10.0" right="10.0" top="15.0" />
                                  </VBox.margin>
                               </ComboBox>
-                              <DatePicker prefHeight="25.0" prefWidth="180.0">
+                              <DatePicker fx:id="addEventDateDatePicker" prefHeight="25.0" prefWidth="180.0">
                                  <VBox.margin>
                                     <Insets left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </DatePicker>
                               <HBox>
                                  <children>
-                                    <Slider prefHeight="14.0" prefWidth="110.0" />
-                                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="65.0" text="heures">
+                                    <Slider fx:id="addEventHourSlider" blockIncrement="1.0" majorTickUnit="10.0" max="47.0" minorTickCount="9" prefHeight="14.0" prefWidth="110.0" showTickMarks="true" snapToTicks="true" />
+                                    <Label fx:id="addEventHourLabel" alignment="CENTER" prefHeight="17.0" prefWidth="65.0" text="heure">
                                        <HBox.margin>
                                           <Insets left="5.0" />
                                        </HBox.margin>
@@ -196,20 +196,7 @@
                                     <Insets left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox>
-                                 <children>
-                                    <Slider prefHeight="14.0" prefWidth="110.0" />
-                                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="65.0" text="minutes">
-                                       <HBox.margin>
-                                          <Insets left="5.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="Ajouter un événement" textAlignment="CENTER">
+                              <Button fx:id="addEventButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="Ajouter un événement" textAlignment="CENTER">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
@@ -218,7 +205,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <TextArea editable="false" focusTraversable="false" promptText="Affichage de la console" VBox.vgrow="ALWAYS" />
+                  <TextArea fx:id="consoleTextArea" editable="false" focusTraversable="false" promptText="Affichage de la console" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
             <ListView maxWidth="200.0" minWidth="200.0" />

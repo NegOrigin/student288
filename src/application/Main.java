@@ -3,7 +3,6 @@ package application;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import modele.Student;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -20,14 +19,6 @@ public class Main extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.sizeToScene();
 			primaryStage.show();
-			Student student1 = new Student("Etudiant test 1");
-			System.out.println(student1);
-			System.out.println();
-			Student student2 = new Student("Etudiant test 2");
-			System.out.println(student2);
-			System.out.println();
-			Student student3 = new Student("Etudiant test 3");
-			System.out.println(student3);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
