@@ -20,8 +20,14 @@ public class Main extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.sizeToScene();
 			primaryStage.show();
-			Student student = new Student("Je suis un etudiant test");
-			System.out.println(student);
+			Student student1 = new Student("Etudiant test 1");
+			System.out.println(student1);
+			System.out.println();
+			Student student2 = new Student("Etudiant test 2");
+			System.out.println(student2);
+			System.out.println();
+			Student student3 = new Student("Etudiant test 3");
+			System.out.println(student3);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
