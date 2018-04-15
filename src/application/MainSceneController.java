@@ -11,7 +11,10 @@ import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -33,7 +36,10 @@ import modele.Student;
 public class MainSceneController implements Initializable {
 
     @FXML
-    private ImageView activityImageView;
+    private Label dateLabel;
+
+    @FXML
+    private Label hourLabel;
 
     @FXML
     private ProgressBar happinessProgressBar;
@@ -60,6 +66,12 @@ public class MainSceneController implements Initializable {
     private ProgressBar vitalityProgressBar;
 
     @FXML
+    private ImageView activityImageView;
+
+    @FXML
+    private TextArea consoleTextArea;
+
+    @FXML
     private ComboBox<String> addEventTypeComboBox;
 
     @FXML
@@ -79,9 +91,6 @@ public class MainSceneController implements Initializable {
 
     @FXML
     private Button addEventButton;
-
-    @FXML
-    private TextArea consoleTextArea;
 
     @FXML
     private ListView<String> eventsListView;
@@ -166,12 +175,32 @@ public class MainSceneController implements Initializable {
 		});
 		
 		printInConsole("Lancement de la simulation");
-		gameTime = new GameTime();
+		gameTime = new GameTime(100);
+		refreshDate();
 		addEventDateDatePicker.setValue(LocalDateTime.ofInstant(gameTime.getNow().toInstant(), ZoneId.systemDefault()).toLocalDate());
 	}
 	
 	private void printInConsole(String message) {
 		consoleTextArea.appendText("\n"+message);
+	}
+	
+	private void refreshDate() {
+		Task<Void> sleeper = new Task<Void>() {
+            protected Void call() throws Exception {
+                try {
+                    Thread.sleep(gameTime.getMinute());
+                } catch (InterruptedException e) {}
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            public void handle(WorkerStateEvent event) {
+            	refreshDate();
+            	dateLabel.setText(String.format("%02d", gameTime.getNow().get(Calendar.DAY_OF_MONTH))+"/"+String.format("%02d", (gameTime.getNow().get(Calendar.MONTH)+1))+"/"+gameTime.getNow().get(Calendar.YEAR));
+            	hourLabel.setText(String.format("%02d", gameTime.getNow().get(Calendar.HOUR_OF_DAY))+" : "+String.format("%02d", gameTime.getNow().get(Calendar.MINUTE)));
+            }
+        });
+        new Thread(sleeper).start();
 	}
 
     @FXML

@@ -15,6 +15,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainSceneController">
   <children>
@@ -24,16 +25,25 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="activityImageView" fitWidth="680.0" pickOnBounds="true" preserveRatio="true">
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                           <image>
-                              <Image url="@../images/tmpBackground.png" />
-                           </image>
-                        </ImageView>
                         <VBox maxWidth="200.0" minWidth="200.0">
                            <children>
+                              <Label fx:id="dateLabel" alignment="CENTER" maxWidth="200.0" minWidth="200.0" text="Date">
+                                 <font>
+                                    <Font name="Arial Unicode MS" size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="hourLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" minWidth="200.0" text="Hour" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Arial Unicode MS" size="40.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Separator prefWidth="200.0" />
                               <HBox>
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -48,13 +58,13 @@
                                     </ProgressBar>
                                  </children>
                                  <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </HBox>
                               <Separator prefWidth="200.0" />
                               <HBox>
                                  <children>
-                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/gaming.png" />
                                        </image>
@@ -66,12 +76,12 @@
                                     </ProgressBar>
                                  </children>
                                  <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="5.0" />
+                                    <Insets left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </HBox>
                               <HBox>
                                  <children>
-                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/love.png" />
                                        </image>
@@ -88,7 +98,7 @@
                               </HBox>
                               <HBox>
                                  <children>
-                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/school.png" />
                                        </image>
@@ -105,7 +115,7 @@
                               </HBox>
                               <HBox>
                                  <children>
-                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/social.png" />
                                        </image>
@@ -117,13 +127,13 @@
                                     </ProgressBar>
                                  </children>
                                  <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                                  </VBox.margin>
                               </HBox>
                               <Separator prefWidth="200.0" />
                               <HBox>
                                  <children>
-                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/health.png" />
                                        </image>
@@ -135,12 +145,12 @@
                                     </ProgressBar>
                                  </children>
                                  <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="5.0" />
+                                    <Insets left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </HBox>
                               <HBox>
                                  <children>
-                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/relaxation.png" />
                                        </image>
@@ -157,7 +167,7 @@
                               </HBox>
                               <HBox>
                                  <children>
-                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/satiety.png" />
                                        </image>
@@ -174,7 +184,7 @@
                               </HBox>
                               <HBox>
                                  <children>
-                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/vitality.png" />
                                        </image>
@@ -186,59 +196,78 @@
                                     </ProgressBar>
                                  </children>
                                  <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                                  </VBox.margin>
                               </HBox>
-                              <Separator prefWidth="200.0" />
-                              <ComboBox fx:id="addEventTypeComboBox" prefHeight="25.0" prefWidth="180.0" promptText="Type d'événement">
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </ComboBox>
-                              <DatePicker fx:id="addEventDateDatePicker" prefHeight="25.0" prefWidth="180.0">
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </DatePicker>
-                              <HBox>
-                                 <children>
-                                    <Slider fx:id="addEventHourSlider" blockIncrement="1.0" majorTickUnit="10.0" max="47.0" minorTickCount="9" prefHeight="14.0" prefWidth="110.0" showTickMarks="true" snapToTicks="true" />
-                                    <Label fx:id="addEventHourLabel" alignment="CENTER" prefHeight="17.0" prefWidth="65.0" text="heure">
-                                       <HBox.margin>
-                                          <Insets left="5.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <Slider fx:id="addEventDurationSlider" blockIncrement="1.0" majorTickUnit="2.0" max="16.0" min="1.0" minorTickCount="1" prefHeight="14.0" prefWidth="110.0" snapToTicks="true" value="1.0" />
-                                    <Label fx:id="addEventDurationLabel" alignment="CENTER" prefHeight="17.0" prefWidth="65.0" text="durée">
-                                       <HBox.margin>
-                                          <Insets left="5.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <Button fx:id="addEventButton" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="180.0" text="Ajouter un événement" textAlignment="CENTER">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </Button>
                            </children>
                         </VBox>
+                        <ImageView fx:id="activityImageView" fitWidth="680.0" pickOnBounds="true" preserveRatio="true">
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                           <image>
+                              <Image url="@../images/tmpBackground.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </HBox>
                   <TextArea fx:id="consoleTextArea" editable="false" focusTraversable="false" promptText="Affichage de la console" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
-            <ListView fx:id="eventsListView" maxWidth="200.0" minWidth="200.0" />
+            <VBox maxWidth="200.0" minWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" maxWidth="200.0" minWidth="200.0" text="Evénements">
+                     <font>
+                        <Font name="Arial Unicode MS" size="25.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ComboBox fx:id="addEventTypeComboBox" prefHeight="25.0" prefWidth="180.0" promptText="Type d'événement">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <DatePicker fx:id="addEventDateDatePicker" prefHeight="25.0" prefWidth="180.0">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <HBox>
+                     <children>
+                        <Slider fx:id="addEventHourSlider" blockIncrement="1.0" majorTickUnit="10.0" max="47.0" minorTickCount="9" prefHeight="14.0" prefWidth="110.0" showTickMarks="true" snapToTicks="true" />
+                        <Label fx:id="addEventHourLabel" alignment="CENTER" prefHeight="17.0" prefWidth="65.0" text="heure">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Slider fx:id="addEventDurationSlider" blockIncrement="1.0" majorTickUnit="2.0" max="16.0" min="1.0" minorTickCount="1" prefHeight="14.0" prefWidth="110.0" snapToTicks="true" value="1.0" />
+                        <Label fx:id="addEventDurationLabel" alignment="CENTER" prefHeight="17.0" prefWidth="65.0" text="durée">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Button fx:id="addEventButton" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="180.0" text="Ajouter un événement" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <ListView fx:id="eventsListView" maxWidth="200.0" minWidth="200.0" prefHeight="498.0" prefWidth="200.0" />
+               </children>
+            </VBox>
          </children>
       </HBox>
   </children>

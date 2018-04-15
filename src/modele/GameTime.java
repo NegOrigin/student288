@@ -5,9 +5,11 @@ import java.util.GregorianCalendar;
 
 public class GameTime extends Thread {
 	private Calendar now;
+	private int minute;
 	
-	public GameTime() {
+	public GameTime(int minute) {
 		setNow(new GregorianCalendar(2018, 9, 3));
+		setMinute(minute);
 		start();
 	}
 	
@@ -15,7 +17,7 @@ public class GameTime extends Thread {
 		while (true) {
 			now.add(Calendar.MINUTE, 1);
 			try {
-				Thread.sleep(100);
+				Thread.sleep(minute);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -28,5 +30,13 @@ public class GameTime extends Thread {
 
 	private void setNow(Calendar now) {
 		this.now = now;
+	}
+
+	public int getMinute() {
+		return minute;
+	}
+
+	private void setMinute(int minute) {
+		this.minute = minute;
 	}
 }
