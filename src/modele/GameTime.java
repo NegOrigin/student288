@@ -13,9 +13,9 @@ public class GameTime extends Thread {
 	
 	public void run() {
 		while (true) {
-			now.add(Calendar.MINUTE, 30);
+			now.add(Calendar.MINUTE, 1);
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
