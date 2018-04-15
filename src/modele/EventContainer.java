@@ -14,12 +14,22 @@ public class EventContainer extends Observable {
 		return events;
 	}
 
-	public void setEvents(ArrayList<Event> events) {
+	private void setEvents(ArrayList<Event> events) {
 		this.events = events;
+	}
+	
+	public Event getEvent(int index) {
+		return events.get(index);
 	}
 	
 	public void addEvent(Event event) {
 		events.add(event);
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void removeEvent(int index) {
+		events.remove(index);
 		setChanged();
 		notifyObservers();
 	}

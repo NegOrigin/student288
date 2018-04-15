@@ -1,7 +1,6 @@
 package application;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Observable;
@@ -23,6 +22,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import modele.Action;
+import modele.ActionContainer;
 import modele.EventContainer;
 import modele.Event;
 import modele.Student;
@@ -85,7 +85,7 @@ public class MainSceneController implements Initializable {
     
     private Student student;
     private EventContainer eventContainer;
-    private ArrayList<Action> actions;
+    private ActionContainer actionContainer;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -93,27 +93,27 @@ public class MainSceneController implements Initializable {
 
 		printInConsole("Création de l'étudiant");
 		student = new Student("Etudiant test");
-		student.getState().addObserver(new Observer() {
+		student.getStudentState().addObserver(new Observer() {
 			public void update(Observable o, Object arg) {
 				happinessProgressBar.setProgress(student.calculateHappiness()/100f);
-				gamingProgressBar.setProgress(student.getState().getGaming()/100f);
-				loveProgressBar.setProgress(student.getState().getLove()/100f);
-				schoolProgressBar.setProgress(student.getState().getSchool()/100f);
-				socialProgressBar.setProgress(student.getState().getSocial()/100f);
-				healthProgressBar.setProgress(student.getState().getHealth()/100f);
-				relaxationProgressBar.setProgress(student.getState().getRelaxation()/100f);
-				vitalityProgressBar.setProgress(student.getState().getVitality()/100f);
+				gamingProgressBar.setProgress(student.getStudentState().getGaming()/100f);
+				loveProgressBar.setProgress(student.getStudentState().getLove()/100f);
+				schoolProgressBar.setProgress(student.getStudentState().getSchool()/100f);
+				socialProgressBar.setProgress(student.getStudentState().getSocial()/100f);
+				healthProgressBar.setProgress(student.getStudentState().getHealth()/100f);
+				relaxationProgressBar.setProgress(student.getStudentState().getRelaxation()/100f);
+				vitalityProgressBar.setProgress(student.getStudentState().getVitality()/100f);
 			}
 		});
 
 		happinessProgressBar.setProgress(student.calculateHappiness()/100f);
-		gamingProgressBar.setProgress(student.getState().getGaming()/100f);
-		loveProgressBar.setProgress(student.getState().getLove()/100f);
-		schoolProgressBar.setProgress(student.getState().getSchool()/100f);
-		socialProgressBar.setProgress(student.getState().getSocial()/100f);
-		healthProgressBar.setProgress(student.getState().getHealth()/100f);
-		relaxationProgressBar.setProgress(student.getState().getRelaxation()/100f);
-		vitalityProgressBar.setProgress(student.getState().getVitality()/100f);
+		gamingProgressBar.setProgress(student.getStudentState().getGaming()/100f);
+		loveProgressBar.setProgress(student.getStudentState().getLove()/100f);
+		schoolProgressBar.setProgress(student.getStudentState().getSchool()/100f);
+		socialProgressBar.setProgress(student.getStudentState().getSocial()/100f);
+		healthProgressBar.setProgress(student.getStudentState().getHealth()/100f);
+		relaxationProgressBar.setProgress(student.getStudentState().getRelaxation()/100f);
+		vitalityProgressBar.setProgress(student.getStudentState().getVitality()/100f);
 		
 		printInConsole("Création du conteneur d'événements");
 		eventContainer = new EventContainer();
@@ -126,16 +126,16 @@ public class MainSceneController implements Initializable {
 			}
 		});
 		
+		printInConsole("Création du conteneur d'actions");
+		actionContainer = new ActionContainer();
 		printInConsole("Définition des actions réalisables");
-		actions = new ArrayList<Action>();
-		actions.add(new Action("Dormir", true, 0, 0, 0, 0, 1, 1, -1, 5));
-		actions.add(new Action("Manger", true, 0, 0, 0, 0, 1, 0, 5, 0));
-		actions.add(new Action("LAN", false, 5, -1, -1, 2, -2, -2, -1, -2));
-		actions.add(new Action("Cours", false, -2, -1, 5, 1, -2, -2, -1, -2));
+		actionContainer.addAction(new Action("Dormir", true, 0, 0, 0, 0, 1, 1, -1, 5));
+		actionContainer.addAction(new Action("Manger", true, 0, 0, 0, 0, 1, 0, 5, 0));
+		actionContainer.addAction(new Action("LAN", false, 5, -1, -1, 2, -2, -2, -1, -2));
+		actionContainer.addAction(new Action("Cours", false, -2, -1, 5, 1, -2, -2, -1, -2));
 		
-		for (Action action : actions) {
-			if (!action.isAlwaysAvailable())
-				addEventTypeComboBox.getItems().add(action.getName());
+		for (Action action : actionContainer.getNotAlwaysAvailableActions()) {
+			addEventTypeComboBox.getItems().add(action.getName());
 		}
 		
 		addEventHourSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -167,6 +167,7 @@ public class MainSceneController implements Initializable {
 
     @FXML
     void addEvent(ActionEvent event) {
+    	Action action = actionContainer.getActionByName(addEventTypeComboBox.getValue());
     	Calendar start = new GregorianCalendar(
 			addEventDateDatePicker.getValue().getYear(), 
 			addEventDateDatePicker.getValue().getMonthValue()-1, 
@@ -181,10 +182,7 @@ public class MainSceneController implements Initializable {
 			start.get(Calendar.HOUR_OF_DAY)+(int)(addEventDurationSlider.getValue()/2f), 
 			start.get(Calendar.MINUTE)+(int)(addEventDurationSlider.getValue()%2f*30)
 		);
-    	for (Action action : actions) {
-			if (action.getName() == addEventTypeComboBox.getValue())
-				eventContainer.addEvent(new Event(action, start, end));
-		}
+    	eventContainer.addEvent(new Event(action, start, end));
     	printInConsole("Evénement ajouté : "+eventContainer.getEvents().get(eventContainer.getEvents().size()-1).toString().replace("\n", ""));
     }
 	

@@ -1,75 +1,72 @@
 package modele;
 
-public class Student {
-	private String name;
-	private StudentType type;
-	private StudentProfile profile;
-	private StudentState state;
+public class Student extends Thread {
+	private StudentType studentType;
+	private StudentProfile studentProfile;
+	private StudentState studentState;
 	
 	public Student(String name) {
-		setName(name);
-		setType(new StudentType());
-		setProfile(new StudentProfile(type));
-		setState(new StudentState(type));
+		super(name);
+		setStudentType(new StudentType());
+		setStudentProfile(new StudentProfile(studentType));
+		setStudentState(new StudentState(studentType));
+		start();
 	}
 	
 	public Student(Student student) {
-		setName(student.getName());
-		setType(student.getType());
-		setProfile(new StudentProfile(student.getProfile()));
-		setState(new StudentState(student.getState()));
+		super(student.getName());
+		setStudentType(student.getStudentType());
+		setStudentProfile(new StudentProfile(student.getStudentProfile()));
+		setStudentState(new StudentState(student.getStudentState()));
+		start();
+	}
+	
+	public void run() {
+		
 	}
 	
 	public String toString() {
-		return "Nom : "+name+",\n"
-			+"Type : "+type+",\n"
-			+"Profil :\n"+profile+",\n"
-			+"Etat :\n"+state+",\n"
+		return "Nom : "+getName()+",\n"
+			+"Type : "+studentType+",\n"
+			+"Profil :\n"+studentProfile+",\n"
+			+"Etat :\n"+studentState+",\n"
 			+"Bonheur : "+calculateHappiness();
 	}
 
-	public String getName() {
-		return name;
+	public StudentType getStudentType() {
+		return studentType;
 	}
 
-	private void setName(String name) {
-		this.name = name;
+	private void setStudentType(StudentType studentType) {
+		this.studentType = studentType;
 	}
 
-	public StudentType getType() {
-		return type;
+	public StudentProfile getStudentProfile() {
+		return studentProfile;
 	}
 
-	private void setType(StudentType type) {
-		this.type = type;
+	private void setStudentProfile(StudentProfile studentProfile) {
+		this.studentProfile = studentProfile;
 	}
 
-	public StudentProfile getProfile() {
-		return profile;
+	public StudentState getStudentState() {
+		return studentState;
 	}
 
-	private void setProfile(StudentProfile profile) {
-		this.profile = profile;
-	}
-
-	public StudentState getState() {
-		return state;
-	}
-
-	private void setState(StudentState state) {
-		this.state = state;
+	private void setStudentState(StudentState studentState) {
+		this.studentState = studentState;
 	}
 	
 	public int calculateHappiness() {
 		float happiness = 0;
-		happiness += calculateHappinessByPrimary(profile.getGaming(), state.getGaming());
-		happiness += calculateHappinessByPrimary(profile.getLove(), state.getLove());
-		happiness += calculateHappinessByPrimary(profile.getSchool(), state.getSchool());
-		happiness += calculateHappinessByPrimary(profile.getSocial(), state.getSocial());
-		happiness += calculateHappinessBySecondary(profile.getHealth(), state.getHealth());
-		happiness += calculateHappinessBySecondary(profile.getRelaxation(), state.getRelaxation());
-		happiness += calculateHappinessBySecondary(profile.getSatiety(), state.getSatiety());
-		happiness += calculateHappinessBySecondary(profile.getVitality(), state.getVitality());
+		happiness += calculateHappinessByPrimary(studentProfile.getGaming(), studentState.getGaming());
+		happiness += calculateHappinessByPrimary(studentProfile.getLove(), studentState.getLove());
+		happiness += calculateHappinessByPrimary(studentProfile.getSchool(), studentState.getSchool());
+		happiness += calculateHappinessByPrimary(studentProfile.getSocial(), studentState.getSocial());
+		happiness += calculateHappinessBySecondary(studentProfile.getHealth(), studentState.getHealth());
+		happiness += calculateHappinessBySecondary(studentProfile.getRelaxation(), studentState.getRelaxation());
+		happiness += calculateHappinessBySecondary(studentProfile.getSatiety(), studentState.getSatiety());
+		happiness += calculateHappinessBySecondary(studentProfile.getVitality(), studentState.getVitality());
 		return Math.round(happiness);
 	}
 	
