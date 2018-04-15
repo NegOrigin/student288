@@ -1,6 +1,8 @@
 package application;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Observable;
@@ -24,6 +26,7 @@ import javafx.scene.image.ImageView;
 import modele.Action;
 import modele.ActionContainer;
 import modele.EventContainer;
+import modele.GameTime;
 import modele.Event;
 import modele.Student;
 
@@ -86,6 +89,8 @@ public class MainSceneController implements Initializable {
     private Student student;
     private EventContainer eventContainer;
     private ActionContainer actionContainer;
+    
+    private GameTime gameTime;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -159,6 +164,10 @@ public class MainSceneController implements Initializable {
 				consoleTextArea.setScrollTop(Double.MAX_VALUE);
 			}
 		});
+		
+		printInConsole("Lancement de la simulation");
+		gameTime = new GameTime();
+		addEventDateDatePicker.setValue(LocalDateTime.ofInstant(gameTime.getNow().toInstant(), ZoneId.systemDefault()).toLocalDate());
 	}
 	
 	private void printInConsole(String message) {
