@@ -68,29 +68,28 @@ public class Student {
 		happiness += calculateHappinessByPrimary(profile.getSocial(), state.getSocial());
 		happiness += calculateHappinessBySecondary(profile.getHealth(), state.getHealth());
 		happiness += calculateHappinessBySecondary(profile.getRelaxation(), state.getRelaxation());
+		happiness += calculateHappinessBySecondary(profile.getSatiety(), state.getSatiety());
 		happiness += calculateHappinessBySecondary(profile.getVitality(), state.getVitality());
 		return Math.round(happiness);
 	}
 	
-	private float calculateHappinessByPrimary(int profile, int state) {
+	private float calculateHappinessByPrimary(float profile, float state) {
 		float diff = state-profile;
 		if (diff >= 0) {
 			if (diff <= 20) 
-				return 8.75f+(20-diff)/20*8.75f;
+				return 10f+(20-diff)/20*10f;
 			else
-				return (8.75f-(1-(40-(diff-20))/40)*8.75f) > 0 ? 8.75f-(1-(40-(diff-20))/40)*8.75f : 0;
+				return (10f-(1-(40-(diff-20))/40)*10f) > 0 ? 10f-(1-(40-(diff-20))/40)*10f : 0;
 		}
 		else {
 			if (diff >= -10) 
-				return 8.75f+(10+diff)/10*8.75f;
+				return 10f+(10+diff)/10*10f;
 			else
-				return (8.75f-(1-(20+(diff+10))/20)*8.75f) > 0 ? 8.75f-(1-(20+(diff+10))/20)*8.75f : 0;
+				return (10f-(1-(20+(diff+10))/20)*10f) > 0 ? 10f-(1-(20+(diff+10))/20)*10f : 0;
 		}
 	}
 	
-	private float calculateHappinessBySecondary(int profile, int state) {
-		float num = state-profile;
-		float denom = 100-profile;
-		return (num/denom*10) > 0 ? num/denom*10 : 0;
+	private float calculateHappinessBySecondary(float profile, float state) {
+		return ((state-profile)/(100-profile)*5) > 0 ? (state-profile)/(100-profile)*5 : 0;
 	}
 }

@@ -1,14 +1,17 @@
 package modele;
 
-public class StudentState {
-	private int gaming;
-	private int love;
-	private int school;
-	private int social;
+import java.util.Observable;
 
-	private int health;
-	private int relaxation;
-	private int vitality;
+public class StudentState extends Observable {
+	private float gaming;
+	private float love;
+	private float school;
+	private float social;
+
+	private float health;
+	private float relaxation;
+	private float satiety;
+	private float vitality;
 	
 	public StudentState(StudentType type) {
 		switch (type.getName()) {
@@ -46,6 +49,7 @@ public class StudentState {
 
 		setHealth((int)(Math.random()*30)+70);
 		setRelaxation((int)(Math.random()*30)+70);
+		setSatiety((int)(Math.random()*30)+70);
 		setVitality((int)(Math.random()*30)+70);
 	}
 	
@@ -56,72 +60,94 @@ public class StudentState {
 		setSocial(state.getSocial());
 		setHealth(state.getHealth());
 		setRelaxation(state.getRelaxation());
+		setSatiety(state.getSatiety());
 		setVitality(state.getVitality());
 	}
 	
 	public String toString() {
-		return "Gaming : "+getGaming()+", "
-			+"Love : "+getLove()+", "
-			+"School : "+getSchool()+", "
-			+"Social : "+getSocial()+",\n"
-			+"Health : "+getHealth()+", "
-			+"Relaxation : "+getRelaxation()+", "
-			+"Vitality : "+getVitality();
+		return "Gaming : "+Math.round(getGaming())+", "
+			+"Love : "+Math.round(getLove())+", "
+			+"School : "+Math.round(getSchool())+", "
+			+"Social : "+Math.round(getSocial())+",\n"
+			+"Health : "+Math.round(getHealth())+", "
+			+"Relaxation : "+Math.round(getRelaxation())+", "
+			+"Satiety : "+Math.round(getSatiety())+", "
+			+"Vitality : "+Math.round(getVitality());
 	}
 
-	public int getGaming() {
+	public float getGaming() {
 		return gaming;
 	}
 
-	private void setGaming(int gaming) {
+	private void setGaming(float gaming) {
 		this.gaming = gaming;
 	}
 
-	public int getLove() {
+	public float getLove() {
 		return love;
 	}
 
-	private void setLove(int love) {
+	private void setLove(float love) {
 		this.love = love;
 	}
 
-	public int getSchool() {
+	public float getSchool() {
 		return school;
 	}
 
-	private void setSchool(int school) {
+	private void setSchool(float school) {
 		this.school = school;
 	}
 
-	public int getSocial() {
+	public float getSocial() {
 		return social;
 	}
 
-	private void setSocial(int social) {
+	private void setSocial(float social) {
 		this.social = social;
 	}
 
-	public int getHealth() {
+	public float getHealth() {
 		return health;
 	}
 
-	private void setHealth(int health) {
+	private void setHealth(float health) {
 		this.health = health;
 	}
 
-	public int getRelaxation() {
+	public float getRelaxation() {
 		return relaxation;
 	}
 
-	private void setRelaxation(int relaxation) {
+	private void setRelaxation(float relaxation) {
 		this.relaxation = relaxation;
 	}
 
-	public int getVitality() {
+	public float getSatiety() {
+		return satiety;
+	}
+
+	public void setSatiety(float satiety) {
+		this.satiety = satiety;
+	}
+
+	public float getVitality() {
 		return vitality;
 	}
 
-	private void setVitality(int vitality) {
+	private void setVitality(float vitality) {
 		this.vitality = vitality;
+	}
+	
+	public void updateState(float gaming, float love, float school, float social, float health, float relaxation, float vitality) {
+		setGaming(getGaming()+gaming);
+		setGaming(getLove()+love);
+		setGaming(getSchool()+school);
+		setGaming(getSocial()+social);
+		setGaming(getHealth()+health);
+		setGaming(getRelaxation()+relaxation);
+		setGaming(getVitality()+vitality);
+		setChanged();
+		notifyObservers();
 	}
 }

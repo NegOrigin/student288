@@ -1,11 +1,13 @@
 package modele;
 
+import java.util.Calendar;
+
 public class Event {
 	private Action action;
-	private int start;
-	private int end;
+	private Calendar start;
+	private Calendar end;
 	
-	public Event(Action action, int start, int end) {
+	public Event(Action action, Calendar start, Calendar end) {
 		setAction(action);
 		setStart(start);
 		setEnd(end);
@@ -19,19 +21,19 @@ public class Event {
 		this.action = action;
 	}
 
-	public int getStart() {
+	public Calendar getStart() {
 		return start;
 	}
 
-	private void setStart(int start) {
+	private void setStart(Calendar start) {
 		this.start = start;
 	}
 
-	public int getEnd() {
+	public Calendar getEnd() {
 		return end;
 	}
 
-	private void setEnd(int end) {
+	private void setEnd(Calendar end) {
 		this.end = end;
 	}
 }

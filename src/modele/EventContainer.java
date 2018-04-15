@@ -2,10 +2,10 @@ package modele;
 
 import java.util.ArrayList;
 
-public class Calendar {
+public class EventContainer {
 	private ArrayList<Event> events;
 	
-	public Calendar() {
+	public EventContainer() {
 		setEvents(new ArrayList<Event>());
 	}
 
@@ -13,7 +13,11 @@ public class Calendar {
 		return events;
 	}
 
-	private void setEvents(ArrayList<Event> events) {
+	public void setEvents(ArrayList<Event> events) {
 		this.events = events;
+	}
+	
+	public void addEvent(Event event) {
+		events.add(event);
 	}
 }
