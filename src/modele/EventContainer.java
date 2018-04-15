@@ -1,8 +1,9 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class EventContainer {
+public class EventContainer extends Observable {
 	private ArrayList<Event> events;
 	
 	public EventContainer() {
@@ -19,5 +20,7 @@ public class EventContainer {
 	
 	public void addEvent(Event event) {
 		events.add(event);
+		setChanged();
+		notifyObservers();
 	}
 }

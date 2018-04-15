@@ -29,7 +29,7 @@
                               <Rectangle2D />
                            </viewport>
                            <image>
-                              <Image url="@../images/pmdu__andalusst_by_chillysundance-d7iyguh.png" />
+                              <Image url="@../images/tmpBackground.png" />
                            </image>
                         </ImageView>
                         <VBox maxWidth="200.0" minWidth="200.0">
@@ -38,7 +38,7 @@
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/happy.png" />
+                                          <Image url="@../images/happiness.png" />
                                        </image>
                                     </ImageView>
                                     <ProgressBar fx:id="happinessProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.49">
@@ -56,7 +56,7 @@
                                  <children>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/game-controller.png" />
+                                          <Image url="@../images/gaming.png" />
                                        </image>
                                     </ImageView>
                                     <ProgressBar fx:id="gamingProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.79">
@@ -73,7 +73,7 @@
                                  <children>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/like.png" />
+                                          <Image url="@../images/love.png" />
                                        </image>
                                     </ImageView>
                                     <ProgressBar fx:id="loveProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.56">
@@ -90,7 +90,7 @@
                                  <children>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/blackboard.png" />
+                                          <Image url="@../images/school.png" />
                                        </image>
                                     </ImageView>
                                     <ProgressBar fx:id="schoolProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.24">
@@ -107,7 +107,7 @@
                                  <children>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/friendship.png" />
+                                          <Image url="@../images/social.png" />
                                        </image>
                                     </ImageView>
                                     <ProgressBar fx:id="socialProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.69">
@@ -125,7 +125,7 @@
                                  <children>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/hospital.png" />
+                                          <Image url="@../images/health.png" />
                                        </image>
                                     </ImageView>
                                     <ProgressBar fx:id="healthProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.94">
@@ -142,7 +142,7 @@
                                  <children>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/yoga.png" />
+                                          <Image url="@../images/relaxation.png" />
                                        </image>
                                     </ImageView>
                                     <ProgressBar fx:id="relaxationProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.64">
@@ -159,7 +159,7 @@
                                  <children>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/diet.png" />
+                                          <Image url="@../images/satiety.png" />
                                        </image>
                                     </ImageView>
                                     <ProgressBar fx:id="satietyProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.88">
@@ -176,7 +176,7 @@
                                  <children>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/zzz-sleep-symbol.png" />
+                                          <Image url="@../images/vitality.png" />
                                        </image>
                                     </ImageView>
                                     <ProgressBar fx:id="vitalityProgressBar" prefHeight="18.0" prefWidth="147.0" progress="0.79">
@@ -238,7 +238,7 @@
                   <TextArea fx:id="consoleTextArea" editable="false" focusTraversable="false" promptText="Affichage de la console" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
-            <ListView maxWidth="200.0" minWidth="200.0" />
+            <ListView fx:id="eventsListView" maxWidth="200.0" minWidth="200.0" />
          </children>
       </HBox>
   </children>

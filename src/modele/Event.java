@@ -12,6 +12,14 @@ public class Event {
 		setStart(start);
 		setEnd(end);
 	}
+	
+	public String toString() {
+		return action.getName()+" \n"
+			+"de "+String.format("%02d", start.get(Calendar.HOUR_OF_DAY))+"h"+String.format("%02d", start.get(Calendar.MINUTE))
+			+" le "+String.format("%02d", start.get(Calendar.DAY_OF_MONTH))+"/"+String.format("%02d", (start.get(Calendar.MONTH)+1))+"/"+start.get(Calendar.YEAR)+" \n"
+			+"à "+String.format("%02d", end.get(Calendar.HOUR_OF_DAY))+"h"+String.format("%02d", end.get(Calendar.MINUTE))
+			+" le "+String.format("%02d", end.get(Calendar.DAY_OF_MONTH))+"/"+String.format("%02d", (end.get(Calendar.MONTH)+1))+"/"+end.get(Calendar.YEAR);
+	}
 
 	public Action getAction() {
 		return action;

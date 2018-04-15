@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
@@ -78,6 +79,9 @@ public class MainSceneController implements Initializable {
 
     @FXML
     private TextArea consoleTextArea;
+
+    @FXML
+    private ListView<String> eventsListView;
     
     private Student student;
     private EventContainer eventContainer;
@@ -91,7 +95,6 @@ public class MainSceneController implements Initializable {
 		student = new Student("Etudiant test");
 		student.getState().addObserver(new Observer() {
 			public void update(Observable o, Object arg) {
-				printInConsole("Mise à jour de l'affichage de l'état de l'étudiant");
 				happinessProgressBar.setProgress(student.calculateHappiness()/100f);
 				gamingProgressBar.setProgress(student.getState().getGaming()/100f);
 				loveProgressBar.setProgress(student.getState().getLove()/100f);
@@ -103,7 +106,6 @@ public class MainSceneController implements Initializable {
 			}
 		});
 
-		printInConsole("Mise à jour de l'affichage de l'état de l'étudiant");
 		happinessProgressBar.setProgress(student.calculateHappiness()/100f);
 		gamingProgressBar.setProgress(student.getState().getGaming()/100f);
 		loveProgressBar.setProgress(student.getState().getLove()/100f);
@@ -113,8 +115,16 @@ public class MainSceneController implements Initializable {
 		relaxationProgressBar.setProgress(student.getState().getRelaxation()/100f);
 		vitalityProgressBar.setProgress(student.getState().getVitality()/100f);
 		
-		printInConsole("Création du calendrier");
+		printInConsole("Création du conteneur d'événements");
 		eventContainer = new EventContainer();
+		eventContainer.addObserver(new Observer() {
+			public void update(Observable o, Object arg) {
+				eventsListView.getItems().clear();
+				for (Event event : eventContainer.getEvents()) {
+					eventsListView.getItems().add(event.toString());
+				}
+			}
+		});
 		
 		printInConsole("Définition des actions réalisables");
 		actions = new ArrayList<Action>();
@@ -143,10 +153,16 @@ public class MainSceneController implements Initializable {
 		});
 		
 		addEventDurationLabel.setText(String.format("%02d", (int)(addEventDurationSlider.getValue()/2f))+"h"+String.format("%02d", (int)(addEventDurationSlider.getValue()%2f*30)));
+		
+		consoleTextArea.textProperty().addListener(new ChangeListener<String>() {
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				consoleTextArea.setScrollTop(Double.MAX_VALUE);
+			}
+		});
 	}
 	
 	private void printInConsole(String message) {
-		consoleTextArea.setText(consoleTextArea.getText()+"\n"+message);
+		consoleTextArea.appendText("\n"+message);
 	}
 
     @FXML
@@ -169,7 +185,7 @@ public class MainSceneController implements Initializable {
 			if (action.getName() == addEventTypeComboBox.getValue())
 				eventContainer.addEvent(new Event(action, start, end));
 		}
-    	printInConsole("Evénement ajouté");
+    	printInConsole("Evénement ajouté : "+eventContainer.getEvents().get(eventContainer.getEvents().size()-1).toString().replace("\n", ""));
     }
 	
 }
