@@ -104,9 +104,32 @@ public class MainSceneController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		consoleTextArea.setText("Initialisation");
+		
+		printInConsole("Création de l'espace temporel");
+		gameTime = new GameTime(100);
+		refreshDate();
+		addEventDateDatePicker.setValue(LocalDateTime.ofInstant(gameTime.getNow().toInstant(), ZoneId.systemDefault()).toLocalDate());
+		
+		printInConsole("Création du conteneur d'actions");
+		actionContainer = new ActionContainer();
+		printInConsole("Définition des actions réalisables");
+		actionContainer.addAction(new Action("Dormir", true, 0, 0, 0, 0, 1, 1, -1, 5));
+		actionContainer.addAction(new Action("Manger", true, 0, 0, 0, 0, 1, 0, 5, 0));
+		actionContainer.addAction(new Action("LAN", false, 5, -1, -1, 2, -2, -2, -1, -2));
+		actionContainer.addAction(new Action("Cours", false, -2, -1, 5, 1, -2, -2, -1, -2));
+		
+		for (Action action : actionContainer.getNotAlwaysAvailableActions()) {
+			addEventTypeComboBox.getItems().add(action.getName());
+		}
+		
+		printInConsole("Création du conteneur d'événements");
+		eventContainer = new EventContainer();
+		eventContainer.setActioncontainer(actionContainer);
 
 		printInConsole("Création de l'étudiant");
 		student = new Student("Etudiant test");
+		student.setGameTime(gameTime);
+		student.setEventContainer(eventContainer);
 		student.getStudentState().addObserver(new Observer() {
 			public void update(Observable o, Object arg) {
 				happinessProgressBar.setProgress(student.calculateHappiness()/100f);
@@ -128,29 +151,6 @@ public class MainSceneController implements Initializable {
 		healthProgressBar.setProgress(student.getStudentState().getHealth()/100f);
 		relaxationProgressBar.setProgress(student.getStudentState().getRelaxation()/100f);
 		vitalityProgressBar.setProgress(student.getStudentState().getVitality()/100f);
-		
-		printInConsole("Création du conteneur d'événements");
-		eventContainer = new EventContainer();
-		eventContainer.addObserver(new Observer() {
-			public void update(Observable o, Object arg) {
-				eventsListView.getItems().clear();
-				for (Event event : eventContainer.getEvents()) {
-					eventsListView.getItems().add(event.toString());
-				}
-			}
-		});
-		
-		printInConsole("Création du conteneur d'actions");
-		actionContainer = new ActionContainer();
-		printInConsole("Définition des actions réalisables");
-		actionContainer.addAction(new Action("Dormir", true, 0, 0, 0, 0, 1, 1, -1, 5));
-		actionContainer.addAction(new Action("Manger", true, 0, 0, 0, 0, 1, 0, 5, 0));
-		actionContainer.addAction(new Action("LAN", false, 5, -1, -1, 2, -2, -2, -1, -2));
-		actionContainer.addAction(new Action("Cours", false, -2, -1, 5, 1, -2, -2, -1, -2));
-		
-		for (Action action : actionContainer.getNotAlwaysAvailableActions()) {
-			addEventTypeComboBox.getItems().add(action.getName());
-		}
 		
 		addEventHourSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -175,9 +175,7 @@ public class MainSceneController implements Initializable {
 		});
 		
 		printInConsole("Lancement de la simulation");
-		gameTime = new GameTime(100);
-		refreshDate();
-		addEventDateDatePicker.setValue(LocalDateTime.ofInstant(gameTime.getNow().toInstant(), ZoneId.systemDefault()).toLocalDate());
+		gameTime.startGame();
 	}
 	
 	private void printInConsole(String message) {
@@ -198,9 +196,17 @@ public class MainSceneController implements Initializable {
             	refreshDate();
             	dateLabel.setText(String.format("%02d", gameTime.getNow().get(Calendar.DAY_OF_MONTH))+"/"+String.format("%02d", (gameTime.getNow().get(Calendar.MONTH)+1))+"/"+gameTime.getNow().get(Calendar.YEAR));
             	hourLabel.setText(String.format("%02d", gameTime.getNow().get(Calendar.HOUR_OF_DAY))+" : "+String.format("%02d", gameTime.getNow().get(Calendar.MINUTE)));
+            	refreshEventList();
             }
         });
         new Thread(sleeper).start();
+	}
+	
+	private void refreshEventList() {
+		eventsListView.getItems().clear();
+		for (Event event : eventContainer.getEventsNotStarted(gameTime.getNow())) {
+			eventsListView.getItems().add(event.toString());
+		}
 	}
 
     @FXML

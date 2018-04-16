@@ -10,7 +10,6 @@ public class GameTime extends Thread {
 	public GameTime(int minute) {
 		setNow(new GregorianCalendar(2018, 9, 3));
 		setMinute(minute);
-		start();
 	}
 	
 	public void run() {
@@ -38,5 +37,9 @@ public class GameTime extends Thread {
 
 	private void setMinute(int minute) {
 		this.minute = minute;
+	}
+	
+	public void startGame() {
+		start();
 	}
 }

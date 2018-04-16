@@ -5,6 +5,9 @@ public class Student extends Thread {
 	private StudentProfile studentProfile;
 	private StudentState studentState;
 	
+	private GameTime gameTime = null;
+	private EventContainer eventContainer = null;
+	
 	public Student(String name) {
 		super(name);
 		setStudentType(new StudentType());
@@ -55,6 +58,14 @@ public class Student extends Thread {
 
 	private void setStudentState(StudentState studentState) {
 		this.studentState = studentState;
+	}
+
+	public void setGameTime(GameTime gameTime) {
+		this.gameTime = gameTime;
+	}
+
+	public void setEventContainer(EventContainer eventContainer) {
+		this.eventContainer = eventContainer;
 	}
 	
 	public int calculateHappiness() {
