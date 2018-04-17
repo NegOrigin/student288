@@ -8,7 +8,7 @@ public class GameTime extends Thread {
 	private int minute;
 	
 	public GameTime(int minute) {
-		setNow(new GregorianCalendar(2018, 9, 3));
+		setNow(new GregorianCalendar(2018, Calendar.SEPTEMBER, 3));
 		setMinute(minute);
 	}
 	
