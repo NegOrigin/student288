@@ -2,7 +2,6 @@ package modele;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class EventContainer {
 	private ArrayList<Event> events;
@@ -33,13 +32,8 @@ public class EventContainer {
 		}
 		if (actioncontainer != null)
 			for (Action action : actioncontainer.getNotAlwaysAvailableActions()) {
-				Calendar end = new GregorianCalendar(
-					start.get(Calendar.YEAR), 
-					start.get(Calendar.MONTH), 
-					start.get(Calendar.DAY_OF_MONTH), 
-					start.get(Calendar.HOUR_OF_DAY), 
-					start.get(Calendar.MINUTE)+30
-				);
+				Calendar end = (Calendar) start.clone();
+				end.set(Calendar.MINUTE, end.get(Calendar.MINUTE)+30);
 				eventsAt.add(new Event(action, start, end));
 			}
 		return eventsAt;

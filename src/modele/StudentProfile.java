@@ -51,17 +51,6 @@ public class StudentProfile {
 		setVitality((int)(Math.random()*30)+40);
 	}
 	
-	public StudentProfile(StudentProfile profile) {
-		setGaming(profile.getGaming());
-		setLove(profile.getLove());
-		setSchool(profile.getSchool());
-		setSocial(profile.getSocial());
-		setHealth(profile.getHealth());
-		setRelaxation(profile.getRelaxation());
-		setSatiety(profile.getSatiety());
-		setVitality(profile.getVitality());
-	}
-	
 	public String toString() {
 		return "Gaming : "+Math.round(getGaming())+", "
 			+"Love : "+Math.round(getLove())+", "

@@ -16,16 +16,8 @@ public class Student extends Thread {
 		start();
 	}
 	
-	public Student(Student student) {
-		super(student.getName());
-		setStudentType(student.getStudentType());
-		setStudentProfile(new StudentProfile(student.getStudentProfile()));
-		setStudentState(new StudentState(student.getStudentState()));
-		start();
-	}
-	
 	public void run() {
-		
+		//TODO
 	}
 	
 	public String toString() {

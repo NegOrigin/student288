@@ -29,6 +29,7 @@ import javafx.scene.image.ImageView;
 import modele.Action;
 import modele.ActionContainer;
 import modele.EventContainer;
+import modele.EventGenrator;
 import modele.GameTime;
 import modele.Event;
 import modele.Student;
@@ -94,12 +95,12 @@ public class MainSceneController implements Initializable {
 
     @FXML
     private ListView<String> eventsListView;
-    
-    private Student student;
-    private EventContainer eventContainer;
-    private ActionContainer actionContainer;
-    
+
     private GameTime gameTime;
+    private ActionContainer actionContainer;
+    private EventContainer eventContainer;
+    private EventGenrator eventGenrator;
+    private Student student;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -125,6 +126,9 @@ public class MainSceneController implements Initializable {
 		printInConsole("Création du conteneur d'événements");
 		eventContainer = new EventContainer();
 		eventContainer.setActioncontainer(actionContainer);
+		
+		printInConsole("Création du générateur d'événements");
+		eventGenrator = new EventGenrator(gameTime, eventContainer, actionContainer);
 
 		printInConsole("Création de l'étudiant");
 		student = new Student("Etudiant test");
@@ -176,6 +180,7 @@ public class MainSceneController implements Initializable {
 		
 		printInConsole("Lancement de la simulation");
 		gameTime.startGame();
+		eventGenrator.startGenerator();
 	}
 	
 	private void printInConsole(String message) {
@@ -219,13 +224,9 @@ public class MainSceneController implements Initializable {
 			(int)(addEventHourSlider.getValue()/2f), 
 			(int)(addEventHourSlider.getValue()%2f*30)
 		);
-    	Calendar end = new GregorianCalendar(
-			start.get(Calendar.YEAR), 
-			start.get(Calendar.MONTH), 
-			start.get(Calendar.DAY_OF_MONTH), 
-			start.get(Calendar.HOUR_OF_DAY)+(int)(addEventDurationSlider.getValue()/2f), 
-			start.get(Calendar.MINUTE)+(int)(addEventDurationSlider.getValue()%2f*30)
-		);
+    	Calendar end = (Calendar) start.clone();
+    	end.set(Calendar.HOUR_OF_DAY, end.get(Calendar.HOUR_OF_DAY)+(int)(addEventDurationSlider.getValue()/2f));
+    	end.set(Calendar.MINUTE, end.get(Calendar.MINUTE)+(int)(addEventDurationSlider.getValue()%2f*30));
     	eventContainer.addEvent(new Event(action, start, end));
     	printInConsole("Evénement ajouté : "+eventContainer.getEvents().get(eventContainer.getEvents().size()-1).toString().replace("\n", ""));
     }
