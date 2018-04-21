@@ -2,8 +2,13 @@ package modele;
 
 import java.util.ArrayList;
 
+import application.MainSceneController;
+import javafx.application.Platform;
+
 public class ActionContainer {
 	private ArrayList<Action> actions;
+	
+	private MainSceneController controller = null;
 	
 	public ActionContainer() {
 		setActions(new ArrayList<Action>());
@@ -15,6 +20,8 @@ public class ActionContainer {
 
 	private void setActions(ArrayList<Action> actions) {
 		this.actions = actions;
+		if (controller != null)
+			updateUI();
 	}
 	
 	public Action getAction(int index) {
@@ -49,9 +56,26 @@ public class ActionContainer {
 	
 	public void addAction(Action action) {
 		actions.add(action);
+		if (controller != null)
+			updateUI();
 	}
 	
 	public void removeAction(int index) {
 		actions.remove(index);
+		if (controller != null)
+			updateUI();
+	}
+
+	public void setController(MainSceneController controller) {
+		this.controller = controller;
+		updateUI();
+	}
+	
+	private void updateUI() {
+		Platform.runLater(new Runnable() {
+		    public void run() {
+				controller.initializeAddEventTypeComboBox(getNotAlwaysAvailableActions());
+		    }
+		});
 	}
 }

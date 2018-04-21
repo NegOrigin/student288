@@ -1,18 +1,33 @@
 package modele;
 
+import application.MainSceneController;
+
 public class Student extends Thread {
 	private StudentType studentType;
 	private StudentProfile studentProfile;
 	private StudentState studentState;
 	
+	private Solver solver;
+	
 	private GameTime gameTime = null;
 	private EventContainer eventContainer = null;
+	private MainSceneController controller = null;
 	
 	public Student(String name) {
 		super(name);
 		setStudentType(new StudentType());
 		setStudentProfile(new StudentProfile(studentType));
 		setStudentState(new StudentState(studentType));
+		setSolver(new Solver());
+		start();
+	}
+	
+	public Student(Student student) {
+		super(student.getName());
+		setStudentType(student.getStudentType());
+		setStudentProfile(new StudentProfile(student.getStudentProfile()));
+		setStudentState(new StudentState(student.getStudentState()));
+		setSolver(new Solver());
 		start();
 	}
 	
@@ -50,6 +65,13 @@ public class Student extends Thread {
 
 	private void setStudentState(StudentState studentState) {
 		this.studentState = studentState;
+		if (controller != null)
+			controller.refreshStudentState(calculateHappiness(), studentState.getGaming(), studentState.getLove(), studentState.getSchool(), studentState.getSocial(), 
+				studentState.getHealth(), studentState.getRelaxation(), studentState.getSatiety(), studentState.getVitality());
+	}
+
+	private void setSolver(Solver solver) {
+		this.solver = solver;
 	}
 
 	public void setGameTime(GameTime gameTime) {
@@ -58,6 +80,18 @@ public class Student extends Thread {
 
 	public void setEventContainer(EventContainer eventContainer) {
 		this.eventContainer = eventContainer;
+	}
+
+	public void setController(MainSceneController controller) {
+		this.controller = controller;
+		controller.refreshStudentState(calculateHappiness(), studentState.getGaming(), studentState.getLove(), studentState.getSchool(), studentState.getSocial(), 
+			studentState.getHealth(), studentState.getRelaxation(), studentState.getSatiety(), studentState.getVitality());
+	}
+	
+	public void updateStudentState(float gaming, float love, float school, float social, float health, float relaxation, float satiety, float vitality) {
+		studentState.updateState(gaming, love, school, social, health, relaxation, satiety, vitality);
+		if (controller != null)
+			controller.refreshStudentState(calculateHappiness(), gaming, love, school, social, health, relaxation, satiety, vitality);
 	}
 	
 	public int calculateHappiness() {

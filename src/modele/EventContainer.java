@@ -3,10 +3,14 @@ package modele;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import application.MainSceneController;
+import javafx.application.Platform;
+
 public class EventContainer {
 	private ArrayList<Event> events;
 	
 	private ActionContainer actioncontainer = null;
+	private MainSceneController controller = null;
 	
 	public EventContainer() {
 		setEvents(new ArrayList<Event>());
@@ -18,6 +22,8 @@ public class EventContainer {
 
 	private void setEvents(ArrayList<Event> events) {
 		this.events = events;
+		if (controller != null)
+			updateUI();
 	}
 	
 	public Event getEvent(int index) {
@@ -50,13 +56,30 @@ public class EventContainer {
 	
 	public void addEvent(Event event) {
 		events.add(event);
+		if (controller != null)
+			updateUI();
 	}
 	
 	public void removeEvent(int index) {
 		events.remove(index);
+		if (controller != null)
+			updateUI();
 	}
 
 	public void setActioncontainer(ActionContainer actioncontainer) {
 		this.actioncontainer = actioncontainer;
+	}
+
+	public void setController(MainSceneController controller) {
+		this.controller = controller;
+		updateUI();
+	}
+	
+	private void updateUI() {
+		Platform.runLater(new Runnable() {
+		    public void run() {
+				controller.refreshEventList(events);
+		    }
+		});
 	}
 }

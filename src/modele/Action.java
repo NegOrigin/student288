@@ -2,6 +2,7 @@ package modele;
 
 public class Action {
 	private String name;
+	private String image;
 	
 	private boolean alwaysAvailable;
 
@@ -15,8 +16,9 @@ public class Action {
 	private float satiety;
 	private float vitality;
 	
-	public Action(String name, boolean alwaysAvailable, float gaming, float love, float school, float social, float health, float relaxation, float satiety, float vitality) {
+	public Action(String name, String image, boolean alwaysAvailable, float gaming, float love, float school, float social, float health, float relaxation, float satiety, float vitality) {
 		setName(name);
+		setImage(image);
 		setAlwaysAvailable(alwaysAvailable);
 		setGaming(gaming);
 		setLove(love);
@@ -34,6 +36,14 @@ public class Action {
 
 	private void setName(String name) {
 		this.name = name;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	private void setImage(String image) {
+		this.image = image;
 	}
 
 	public boolean isAlwaysAvailable() {

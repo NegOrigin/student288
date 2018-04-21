@@ -1,8 +1,6 @@
 package modele;
 
-import java.util.Observable;
-
-public class StudentState extends Observable {
+public class StudentState {
 	private float gaming;
 	private float love;
 	private float school;
@@ -127,7 +125,7 @@ public class StudentState extends Observable {
 		return satiety;
 	}
 
-	public void setSatiety(float satiety) {
+	private void setSatiety(float satiety) {
 		this.satiety = satiety;
 	}
 
@@ -139,15 +137,14 @@ public class StudentState extends Observable {
 		this.vitality = vitality;
 	}
 	
-	public void updateState(float gaming, float love, float school, float social, float health, float relaxation, float vitality) {
+	public void updateState(float gaming, float love, float school, float social, float health, float relaxation, float satiety, float vitality) {
 		setGaming(getGaming()+gaming);
-		setGaming(getLove()+love);
-		setGaming(getSchool()+school);
-		setGaming(getSocial()+social);
-		setGaming(getHealth()+health);
-		setGaming(getRelaxation()+relaxation);
-		setGaming(getVitality()+vitality);
-		setChanged();
-		notifyObservers();
+		setLove(getLove()+love);
+		setSchool(getSchool()+school);
+		setSocial(getSocial()+social);
+		setHealth(getHealth()+health);
+		setRelaxation(getRelaxation()+relaxation);
+		setSatiety(getSatiety()+satiety);
+		setVitality(getVitality()+vitality);
 	}
 }

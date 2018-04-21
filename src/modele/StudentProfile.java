@@ -45,10 +45,21 @@ public class StudentProfile {
 			break;
 		}
 
-		setHealth((int)(Math.random()*30)+40);
-		setRelaxation((int)(Math.random()*30)+40);
-		setSatiety((int)(Math.random()*30)+40);
-		setVitality((int)(Math.random()*30)+40);
+		setHealth((int)(Math.random()*30));
+		setRelaxation((int)(Math.random()*30));
+		setSatiety((int)(Math.random()*30));
+		setVitality((int)(Math.random()*30));
+	}
+	
+	public StudentProfile(StudentProfile profile) {
+		setGaming(profile.getGaming());
+		setLove(profile.getLove());
+		setSchool(profile.getSchool());
+		setSocial(profile.getSocial());
+		setHealth(profile.getHealth());
+		setRelaxation(profile.getRelaxation());
+		setSatiety(profile.getSatiety());
+		setVitality(profile.getVitality());
 	}
 	
 	public String toString() {
