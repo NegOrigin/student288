@@ -206,7 +206,7 @@
                               <Rectangle2D />
                            </viewport>
                            <image>
-                              <Image url="@../images/actions/tmpBackground.png" />
+                              <Image url="@../images/actions/chargement.gif" />
                            </image>
                         </ImageView>
                      </children>
