@@ -20,8 +20,7 @@ public class ActionContainer {
 
 	private void setActions(ArrayList<Action> actions) {
 		this.actions = actions;
-		if (controller != null)
-			updateUI();
+		updateUI();
 	}
 	
 	public Action getAction(int index) {
@@ -56,14 +55,12 @@ public class ActionContainer {
 	
 	public void addAction(Action action) {
 		actions.add(action);
-		if (controller != null)
-			updateUI();
+		updateUI();
 	}
 	
 	public void removeAction(int index) {
 		actions.remove(index);
-		if (controller != null)
-			updateUI();
+		updateUI();
 	}
 
 	public void setController(MainSceneController controller) {
@@ -72,10 +69,11 @@ public class ActionContainer {
 	}
 	
 	private void updateUI() {
-		Platform.runLater(new Runnable() {
-		    public void run() {
-				controller.initializeAddEventTypeComboBox(getNotAlwaysAvailableActions());
-		    }
-		});
+		if (controller != null)
+			Platform.runLater(new Runnable() {
+			    public void run() {
+					controller.initializeAddEventTypeComboBox(getNotAlwaysAvailableActions());
+			    }
+			});
 	}
 }

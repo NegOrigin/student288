@@ -2,32 +2,23 @@ package modele;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import application.MainSceneController;
 import javafx.application.Platform;
 
-public class GameTime extends Thread {
+public class GameTime {
 	private Calendar now;
 	private int minute;
+	
+	private Timer scheduler = new Timer();
 	
 	private MainSceneController controller = null;
 	
 	public GameTime(int minute) {
 		setNow(new GregorianCalendar(2018, Calendar.SEPTEMBER, 2, 12, 0));
 		setMinute(minute);
-	}
-	
-	public void run() {
-		while (true) {
-			now.add(Calendar.MINUTE, 1);
-			if (controller != null)
-				updateUI();
-			try {
-				Thread.sleep(minute);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 	public Calendar getNow() {
@@ -36,8 +27,7 @@ public class GameTime extends Thread {
 
 	private void setNow(Calendar now) {
 		this.now = now;
-		if (controller != null)
-			updateUI();
+		updateUI();
 	}
 
 	public int getMinute() {
@@ -55,7 +45,12 @@ public class GameTime extends Thread {
 	}
 	
 	public void startGame() {
-		start();
+		scheduler.scheduleAtFixedRate(new TimerTask() {
+			public void run() {
+				now.add(Calendar.MINUTE, 1);
+				updateUI();
+			}
+		}, minute, minute);
 	}
 	
 	private void initializeUI() {
@@ -67,10 +62,11 @@ public class GameTime extends Thread {
 	}
 	
 	private void updateUI() {
-		Platform.runLater(new Runnable() {
-		    public void run() {
-				controller.refreshDate(now);
-		    }
-		});
+		if (controller != null)
+			Platform.runLater(new Runnable() {
+			    public void run() {
+					controller.refreshDate(now);
+			    }
+			});
 	}
 }

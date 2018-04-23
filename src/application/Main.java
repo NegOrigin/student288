@@ -52,6 +52,7 @@ public class Main extends Application {
 			
 			controller.printInConsole("Création du conteneur d'événements");
 			EventContainer eventContainer = new EventContainer();
+			eventContainer.setGameTime(gameTime);
 			eventContainer.setActioncontainer(actionContainer);
 			eventContainer.setController(controller);
 			controller.setEventContainer(eventContainer);
@@ -61,8 +62,7 @@ public class Main extends Application {
 			
 			controller.printInConsole("Création de l'étudiant");
 			Student student = new Student("Etudiant test");
-			student.setGameTime(gameTime);
-			student.setEventContainer(eventContainer);
+			student.setGameTimeAndEventContainer(gameTime, eventContainer);
 			student.setController(controller);
 			
 			controller.printInConsole("Lancement de la simulation");

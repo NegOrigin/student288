@@ -2,6 +2,8 @@ package modele;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import application.MainSceneController;
 import javafx.application.Platform;
@@ -9,6 +11,9 @@ import javafx.application.Platform;
 public class EventContainer {
 	private ArrayList<Event> events;
 	
+	private Timer scheduler = new Timer();
+
+	private GameTime gameTime = null;
 	private ActionContainer actioncontainer = null;
 	private MainSceneController controller = null;
 	
@@ -22,8 +27,7 @@ public class EventContainer {
 
 	private void setEvents(ArrayList<Event> events) {
 		this.events = events;
-		if (controller != null)
-			updateUI();
+		updateUI();
 	}
 	
 	public Event getEvent(int index) {
@@ -56,14 +60,22 @@ public class EventContainer {
 	
 	public void addEvent(Event event) {
 		events.add(event);
-		if (controller != null)
-			updateUI();
+		updateUI();
 	}
 	
 	public void removeEvent(int index) {
 		events.remove(index);
-		if (controller != null)
-			updateUI();
+		updateUI();
+	}
+
+	public void setGameTime(GameTime gameTime) {
+		this.gameTime = gameTime;
+		scheduler.scheduleAtFixedRate(new TimerTask() {
+			public void run() {
+				if (gameTime.getNow().get(Calendar.MINUTE) == 0 || gameTime.getNow().get(Calendar.MINUTE) == 30)
+					updateUI();
+			}
+		}, gameTime.getMinute(), gameTime.getMinute());
 	}
 
 	public void setActioncontainer(ActionContainer actioncontainer) {
@@ -76,10 +88,11 @@ public class EventContainer {
 	}
 	
 	private void updateUI() {
-		Platform.runLater(new Runnable() {
-		    public void run() {
-				controller.refreshEventList(events);
-		    }
-		});
+		if (controller != null)
+			Platform.runLater(new Runnable() {
+			    public void run() {
+					controller.refreshEventList(getEventsNotStarted(gameTime.getNow()));
+			    }
+			});
 	}
 }

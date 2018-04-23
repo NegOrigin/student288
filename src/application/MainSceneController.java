@@ -190,7 +190,8 @@ public class MainSceneController implements Initializable {
 	}
 	
 	public void refreshStudentActivityImage(String image) {
-		activityImageView.setImage(new Image(Main.class.getResourceAsStream(image)));
+		if (Main.class.getResourceAsStream(image) != null)
+			activityImageView.setImage(new Image(Main.class.getResourceAsStream(image)));
 	}
 	
 }
