@@ -78,9 +78,7 @@ public class Student {
 
 	private void setStudentState(StudentState studentState) {
 		this.studentState = studentState;
-		if (controller != null)
-			controller.refreshStudentState(calculateHappiness(), studentState.getGaming(), studentState.getLove(), studentState.getSchool(), studentState.getSocial(), 
-				studentState.getHealth(), studentState.getRelaxation(), studentState.getSatiety(), studentState.getVitality());
+		updateUI();
 	}
 
 	public void setGameTimeAndEventContainer(GameTime gameTime, EventContainer eventContainer) {
@@ -120,7 +118,8 @@ public class Student {
 
 	private void setEventCurrent(Event eventCurrent) {
 		this.eventCurrent = eventCurrent;
-		updateUI();
+		updateStudentState(eventCurrent.getAction().getGaming(), eventCurrent.getAction().getLove(), eventCurrent.getAction().getSchool(), eventCurrent.getAction().getSocial(), 
+				eventCurrent.getAction().getHealth(), eventCurrent.getAction().getRelaxation(), eventCurrent.getAction().getSatiety(), eventCurrent.getAction().getVitality());
 	}
 
 	public void setEventNext(Event eventNext) {

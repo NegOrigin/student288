@@ -78,7 +78,9 @@ public class StudentState {
 	}
 
 	private void setGaming(float gaming) {
-		this.gaming = gaming;
+		if (gaming < 0) this.gaming = 0;
+		else if (gaming > 100) this.gaming = 100;
+		else this.gaming = gaming;
 	}
 
 	public float getLove() {
@@ -86,7 +88,9 @@ public class StudentState {
 	}
 
 	private void setLove(float love) {
-		this.love = love;
+		if (love < 0) this.love = 0;
+		else if (love > 100) this.love = 100;
+		else this.love = love;
 	}
 
 	public float getSchool() {
@@ -94,7 +98,9 @@ public class StudentState {
 	}
 
 	private void setSchool(float school) {
-		this.school = school;
+		if (school < 0) this.school = 0;
+		else if (school > 100) this.school = 100;
+		else this.school = school;
 	}
 
 	public float getSocial() {
@@ -102,7 +108,9 @@ public class StudentState {
 	}
 
 	private void setSocial(float social) {
-		this.social = social;
+		if (social < 0) this.social = 0;
+		else if (social > 100) this.social = 100;
+		else this.social = social;
 	}
 
 	public float getHealth() {
@@ -110,7 +118,9 @@ public class StudentState {
 	}
 
 	private void setHealth(float health) {
-		this.health = health;
+		if (health < 0) this.health = 0;
+		else if (health > 100) this.health = 100;
+		else this.health = health;
 	}
 
 	public float getRelaxation() {
@@ -118,7 +128,9 @@ public class StudentState {
 	}
 
 	private void setRelaxation(float relaxation) {
-		this.relaxation = relaxation;
+		if (relaxation < 0) this.relaxation = 0;
+		else if (relaxation > 100) this.relaxation = 100;
+		else this.relaxation = relaxation;
 	}
 
 	public float getSatiety() {
@@ -126,7 +138,9 @@ public class StudentState {
 	}
 
 	private void setSatiety(float satiety) {
-		this.satiety = satiety;
+		if (satiety < 0) this.satiety = 0;
+		else if (satiety > 100) this.satiety = 100;
+		else this.satiety = satiety;
 	}
 
 	public float getVitality() {
@@ -134,7 +148,9 @@ public class StudentState {
 	}
 
 	private void setVitality(float vitality) {
-		this.vitality = vitality;
+		if (vitality < 0) this.vitality = 0;
+		else if (vitality > 100) this.vitality = 100;
+		else this.vitality = vitality;
 	}
 	
 	public void updateState(float gaming, float love, float school, float social, float health, float relaxation, float satiety, float vitality) {
