@@ -37,18 +37,25 @@ public class Main extends Application {
 			controller.setActionContainer(actionContainer);
 			
 			controller.printInConsole("Définition des actions réalisables");
-			actionContainer.addAction(new Action("Dormir", null, true, 0, 0, 0, 0, 0, 0, 0, 0));
-			actionContainer.addAction(new Action("Manger", null, true, 0, 0, 0, 0, 0, 0, 0, 0));
-			actionContainer.addAction(new Action("Jouer", null, true, 0, 0, 0, 0, 0, 0, 0, 0));
-			actionContainer.addAction(new Action("Réviser", null, true, 0, 0, 0, 0, 0, 0, 0, 0));
-			actionContainer.addAction(new Action("Se promener", null, true, 0, 0, 0, 0, 0, 0, 0, 0));
-			actionContainer.addAction(new Action("Faire du sport", null, true, 0, 0, 0, 0, 0, 0, 0, 0));
-			actionContainer.addAction(new Action("Aller chez le médecin", null, true, 0, 0, 0, 0, 0, 0, 0, 0));
-			actionContainer.addAction(new Action("Aller en LAN", null, false, 0, 0, 0, 0, 0, 0, 0, 0));
-			actionContainer.addAction(new Action("Aller en Cours", null, false, 0, 0, 0, 0, 0, 0, 0, 0));
-			actionContainer.addAction(new Action("Sortir avec des amis", null, false, 0, 0, 0, 0, 0, 0, 0, 0));
-			actionContainer.addAction(new Action("Sortir avec son(sa) copain(ine)", null, false, 0, 0, 0, 0, 0, 0, 0, 0));
-			
+			//name;image;alwaysAvailable;proba;	gaming;love;school;social;	health;relaxation;satiety;vitality;	
+			//Les actions qui commencent par /!\\ sont mauvaises pour les stats de l'étudiant
+			actionContainer.addAction(new Action("Dormir", null, true, 0, 0, 0, 0, 0, 0.5f, 0.5f, -1, 3));
+			actionContainer.addAction(new Action("Manger", null, true, 0, 0, 0, 0, 0, 0.5f, 0.5f, 20, -0.5f));
+			actionContainer.addAction(new Action("Jouer en solo", null, true, 0, 1, -0.5f, -0.5f, -0.5f, -0.5f, 2, -3, -1.5f));
+			actionContainer.addAction(new Action("Jouer en multi", null, true, 0, 1, 0, -0.5f, 0.5f, -0.5f, 2, -3, -2));
+			actionContainer.addAction(new Action("Réviser", null, true, 0, -0.5f, -0.5f, 1.5f, -0.5f, -0.5f, 1, -3, -1.5f));
+			actionContainer.addAction(new Action("Se promener", null, true, 0, 0, 0, 0, 0, 0.5f, 1, -5, -2.5f));
+			actionContainer.addAction(new Action("Faire du sport", null, true, 0, 0, 0, 0, 0, 1, 1, -8, -4));
+			actionContainer.addAction(new Action("Aller chez le médecin", null, true, 0, 0, 0, 0, 0, 20, -1, -3, -2));
+			actionContainer.addAction(new Action("Aller en LAN", null, false, 0, 3, -0.5f, -1, 1, -0.5f, 1, -4, -2.5f));
+			actionContainer.addAction(new Action("Aller en Cours", null, false, 0, -0.5f, -0.5f, 1, 0.5f, -0.5f, 1, -4, -2.5f));
+			actionContainer.addAction(new Action("Sortir avec des amis", null, false, 0.4f, -0.5f, -0.5f, -0.5f, 2, 0, 2, -5, -2.5f));
+			actionContainer.addAction(new Action("Sortir avec son(sa) copain(ine)", null, false, 0.2f, -0.5f, 10, -0.5f, 0.5f, 0, 4, -5, -2.5f));
+			actionContainer.addAction(new Action("/!\\ Maladie", null, false, 0.02f, 0, 0, 0, 0, -12, -6, -0.5f, -6));
+			actionContainer.addAction(new Action("/!\\ Controle", null, false, 0.1f, 0, 0, 0, 0, -1, -8, -4, -3));
+			actionContainer.addAction(new Action("/!\\ Dispute de couple", null, false, 0.04f, -0.5f, -6, -0.5f, -0.5f, -1, -10, -4, -5));
+			actionContainer.addAction(new Action("/!\\ Dispute entre amis", null, false, 0.03f, -0.5f, -0.5f, -0.5f, -6, -1, -10, -4, -5));
+
 			controller.printInConsole("Création du conteneur d'événements");
 			EventContainer eventContainer = new EventContainer();
 			eventContainer.setGameTime(gameTime);

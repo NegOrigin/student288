@@ -5,7 +5,8 @@ public class Action {
 	private String image;
 	
 	private boolean alwaysAvailable;
-
+	private float probability;
+	
 	private float gaming;
 	private float love;
 	private float school;
@@ -16,10 +17,11 @@ public class Action {
 	private float satiety;
 	private float vitality;
 	
-	public Action(String name, String image, boolean alwaysAvailable, float gaming, float love, float school, float social, float health, float relaxation, float satiety, float vitality) {
+	public Action(String name, String image, boolean alwaysAvailable, float probability, float gaming, float love, float school, float social, float health, float relaxation, float satiety, float vitality) {
 		setName(name);
 		setImage(image);
 		setAlwaysAvailable(alwaysAvailable);
+		setProbability(probability);
 		setGaming(gaming);
 		setLove(love);
 		setSchool(school);
@@ -52,6 +54,14 @@ public class Action {
 
 	private void setAlwaysAvailable(boolean alwaysAvailable) {
 		this.alwaysAvailable = alwaysAvailable;
+	}
+	
+	public float getProbability() {
+		return probability;
+	}
+
+	private void setProbability(float probability) {
+		this.probability = probability;
 	}
 
 	public float getGaming() {
