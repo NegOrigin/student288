@@ -6,7 +6,7 @@ public class Node {
 	private int pathScore;
 	private int depth;
 	
-	public Node(Event event, Node parent, int pathScore, int depthn) {
+	public Node(Event event, Node parent, int pathScore, int depth) {
 		setEvent(event);
 		setParent(parent);
 		setPathScore(pathScore);
