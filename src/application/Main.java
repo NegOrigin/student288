@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import modele.Action;
 import modele.ActionContainer;
 import modele.EventContainer;
-import modele.EventGenrator;
+import modele.EventGenerator;
 import modele.GameTime;
 import modele.Student;
 import javafx.scene.Parent;
@@ -57,7 +57,7 @@ public class Main extends Application {
 			controller.setEventContainer(eventContainer);
 			
 			controller.printInConsole("Création du générateur d'événements");
-			EventGenrator eventGenrator = new EventGenrator(gameTime, eventContainer, actionContainer);
+			EventGenerator eventGenerator = new EventGenerator(gameTime, eventContainer, actionContainer);
 			
 			controller.printInConsole("Création de l'étudiant");
 			Student student = new Student("Etudiant test");
@@ -66,7 +66,6 @@ public class Main extends Application {
 			
 			controller.printInConsole("Lancement de la simulation");
 			gameTime.startGame();
-			eventGenrator.startGenerator();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
