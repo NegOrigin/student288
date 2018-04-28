@@ -2,6 +2,8 @@ package modele;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -27,6 +29,11 @@ public class EventContainer {
 
 	private void setEvents(ArrayList<Event> events) {
 		this.events = events;
+		Collections.sort(this.events, new Comparator<Event>() {
+			public int compare(Event e1, Event e2) {
+		      return e1.getStart().compareTo(e2.getStart());
+			}
+		});
 		updateUI();
 	}
 	
@@ -60,6 +67,11 @@ public class EventContainer {
 	
 	public void addEvent(Event event) {
 		events.add(event);
+		Collections.sort(events, new Comparator<Event>() {
+			public int compare(Event e1, Event e2) {
+		      return e1.getStart().compareTo(e2.getStart());
+			}
+		});
 		updateUI();
 	}
 	

@@ -1,41 +1,41 @@
 package modele;
 
 import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class EventGenrator extends Thread {
+public class EventGenerator {
 	private GameTime gameTime = null;
 	private EventContainer eventContainer = null;
 	private ActionContainer actionContainer = null;
 	
-	public EventGenrator(GameTime gameTime, EventContainer eventContainer, ActionContainer actionContainer) {
+	private Timer scheduler = new Timer();
+	
+	public EventGenerator(GameTime gameTime, EventContainer eventContainer, ActionContainer actionContainer) {
 		setGameTime(gameTime);
 		setEventContainer(eventContainer);
 		setActionContainer(actionContainer);
 	}
-	
-	public void run() {
-		Calendar now;
-		Boolean dayDone = false;
-		while (true) {
-			try {
-				sleep(50);
-				now = (Calendar) gameTime.getNow().clone();
-				if (!dayDone && now.get(Calendar.HOUR_OF_DAY) == 12 && now.get(Calendar.MINUTE) == 30) {
-					dayDone = true;
-					generateDailyEvents(now);
-					generateRandomEvents(now);
-				}
-				else if (dayDone && now.get(Calendar.HOUR_OF_DAY) == 0 && now.get(Calendar.MINUTE) == 0) {
-					dayDone = false;
-				}
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
 
 	private void setGameTime(GameTime gameTime) {
 		this.gameTime = gameTime;
+		scheduler.scheduleAtFixedRate(new TimerTask() {
+			public void run() {
+				Calendar now;
+				Boolean dayDone = false;
+				while (true) {
+					now = (Calendar) gameTime.getNow().clone();
+					if (!dayDone && now.get(Calendar.HOUR_OF_DAY) == 12 && now.get(Calendar.MINUTE) == 30) {
+						dayDone = true;
+						generateDailyEvents(now);
+						generateRandomEvents(now);
+					}
+					else if (dayDone && now.get(Calendar.HOUR_OF_DAY) == 0 && now.get(Calendar.MINUTE) == 0) {
+						dayDone = false;
+					}
+				}
+			}
+		}, gameTime.getMinute(), gameTime.getMinute());
 	}
 
 	private void setEventContainer(EventContainer eventContainer) {
@@ -72,9 +72,5 @@ public class EventGenrator extends Thread {
 		Calendar end = (Calendar) start.clone();
 		
 		//TODO
-	}
-	
-	public void startGenerator() {
-		start();
 	}
 }

@@ -91,7 +91,7 @@ public class MainSceneController implements Initializable {
     private Button addEventButton;
 
     @FXML
-    private ListView<String> eventsListView;
+    private ListView<String> eventListView;
 
     private ActionContainer actionContainer = null;
     private EventContainer eventContainer = null;
@@ -149,8 +149,9 @@ public class MainSceneController implements Initializable {
 	    	Calendar end = (Calendar) start.clone();
 	    	end.set(Calendar.HOUR_OF_DAY, end.get(Calendar.HOUR_OF_DAY)+(int)(addEventDurationSlider.getValue()/2f));
 	    	end.set(Calendar.MINUTE, end.get(Calendar.MINUTE)+(int)(addEventDurationSlider.getValue()%2f*30));
-	    	eventContainer.addEvent(new Event(action, start, end));
-	    	printInConsole("Evénement ajouté : "+eventContainer.getEvents().get(eventContainer.getEvents().size()-1).toString().replace("\n", ""));
+	    	Event newEvent = new Event(action, start, end);
+	    	eventContainer.addEvent(newEvent);
+	    	printInConsole("Evénement ajouté : "+newEvent.toString().replace("\n", ""));
     	}
     }
     
@@ -171,9 +172,9 @@ public class MainSceneController implements Initializable {
 	}
 	
 	public void refreshEventList(ArrayList<Event> events) {
-		eventsListView.getItems().clear();
+		eventListView.getItems().clear();
 		for (Event event : events) {
-			eventsListView.getItems().add(event.toString());
+			eventListView.getItems().add(event.toString());
 		}
 	}
 	
