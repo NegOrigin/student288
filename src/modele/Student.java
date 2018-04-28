@@ -88,7 +88,7 @@ public class Student {
 		Calendar start = gameTime.getNow();
 		Calendar end = (Calendar) start.clone();
 		end.add(Calendar.MINUTE, 120);
-		setEventCurrent(new Event(new Action("Rien", "../images/actions/chargement.gif", false, 0, 0, 0, 0, 0, 0, 0, 0), start, end));
+		setEventCurrent(new Event(new Action("Rien", "../images/actions/chargement.gif", false, 0, 0, 0, 0, 0, 0, 0, 0, 0), start, end));
 		setEventNext(solver.findEvent(getThis(), gameTime, eventContainer));
 
 		scheduler.scheduleAtFixedRate(new TimerTask() {
