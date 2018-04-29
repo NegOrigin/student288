@@ -1,6 +1,9 @@
 package modele;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -116,10 +119,52 @@ public class Student {
 		return eventCurrent;
 	}
 
-	private void setEventCurrent(Event eventCurrent) {
+	public void setEventCurrent(Event eventCurrent) {
 		this.eventCurrent = eventCurrent;
-		updateStudentState(eventCurrent.getAction().getGaming(), eventCurrent.getAction().getLove(), eventCurrent.getAction().getSchool(), eventCurrent.getAction().getSocial(), 
-				eventCurrent.getAction().getHealth(), eventCurrent.getAction().getRelaxation(), eventCurrent.getAction().getSatiety(), eventCurrent.getAction().getVitality());
+		
+		float gaming = eventCurrent.getAction().getGaming();
+		float love = eventCurrent.getAction().getLove();
+		float school = eventCurrent.getAction().getSchool();
+		float social = eventCurrent.getAction().getSocial();
+
+		float health = eventCurrent.getAction().getHealth();
+		float relaxation = eventCurrent.getAction().getRelaxation();
+		float satiety = eventCurrent.getAction().getSatiety();
+		float vitality = eventCurrent.getAction().getVitality();
+		
+		//temps en milliseconde -> tranche de 30 minutes : temps/(1000*60*30)
+		int time = (int)(eventCurrent.getEnd().getTimeInMillis()/1800000 - eventCurrent.getStart().getTimeInMillis()/1800000);
+		
+		//Evenements qui n'impact pas que sur les stats liées à la santé
+		if(gaming != 0 || love != 0 || school != 0 || social != 0) {
+			gaming = gaming*getStudentProfile().getGaming()/100;
+			love = love*getStudentProfile().getLove()/100;
+			school = school*getStudentProfile().getSchool()/100;
+			social = social*getStudentProfile().getSocial()/100;
+			
+			//On gère la relaxation
+			//Elle dépend de la stat proéminente de l'event
+			ArrayList<Float> statList = new ArrayList<Float>();
+			statList.add(gaming);
+			statList.add(love);
+			statList.add(school);
+			statList.add(social);
+			
+			if(gaming == Collections.max(statList)) {
+				relaxation = relaxation*(getStudentProfile().getGaming()-50)/100;
+			}
+			else if(love == Collections.max(statList)) {
+				relaxation = relaxation*(getStudentProfile().getLove()-50)/100;
+			}
+			else if(school == Collections.max(statList)) {
+				relaxation = relaxation*(getStudentProfile().getSchool()-50)/100;
+			}
+			else {
+				relaxation = relaxation*(getStudentProfile().getSocial()-50)/100;
+			}		
+		}
+		
+		updateStudentState(gaming*time, love*time, school*time, social*time, health*time, relaxation*time, satiety*time, vitality*time);
 	}
 
 	public void setEventNext(Event eventNext) {

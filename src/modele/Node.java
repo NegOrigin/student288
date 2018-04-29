@@ -5,12 +5,14 @@ public class Node {
 	private Node parent;
 	private int pathScore;
 	private int depth;
+	private Student student;
 	
-	public Node(Event event, Node parent, int pathScore, int depth) {
+	public Node(Event event, Node parent, int pathScore, int depth, Student student) {
 		setEvent(event);
 		setParent(parent);
 		setPathScore(pathScore);
 		setDepth(depth);
+		setStudent(student);
 	}
 
 	public Event getEvent() {
@@ -43,5 +45,13 @@ public class Node {
 
 	private void setDepth(int depth) {
 		this.depth = depth;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	private void setStudent(Student student) {
+		this.student = student;
 	}
 }
