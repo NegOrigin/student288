@@ -34,7 +34,6 @@ public class EventContainer {
 		      return e1.getStart().compareTo(e2.getStart());
 			}
 		});
-		//updateUI(getEventsNotStarted(gameTime.getNow()));
 	}
 	
 	public Event getEvent(int index) {
@@ -57,12 +56,12 @@ public class EventContainer {
 	}
 	
 	public ArrayList<Event> getEventsNotStarted(Calendar start) {
-		ArrayList<Event> eventsAt = new ArrayList<Event>();
+		ArrayList<Event> eventsNotStarted = new ArrayList<Event>();
 		for (Event event : events) {
 			if (event.getStart().after(start))
-				eventsAt.add(event);
+				eventsNotStarted.add(event);
 		}
-		return eventsAt;
+		return eventsNotStarted;
 	}
 	
 	public void addEvent(Event event) {
@@ -99,11 +98,11 @@ public class EventContainer {
 		updateUI(getEventsNotStarted(gameTime.getNow()));
 	}
 	
-	private void updateUI(ArrayList<Event> events) {
+	private void updateUI(ArrayList<Event> eventsNotStarted) {
 		if (controller != null)
 			Platform.runLater(new Runnable() {
 			    public void run() {
-					controller.refreshEventList(events);
+					controller.refreshEventList(eventsNotStarted);
 			    }
 			});
 	}

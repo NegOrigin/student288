@@ -1,7 +1,6 @@
 package modele;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Timer;
@@ -124,6 +123,9 @@ public class Student {
 	public void setEventCurrent(Event eventCurrent) {
 		this.eventCurrent = eventCurrent;
 		
+		if (controller != null)
+			controller.printInConsole("Événement en cours : "+eventCurrent.toString().replace("\n", ""));
+		
 		float gaming = eventCurrent.getAction().getGaming();
 		float love = eventCurrent.getAction().getLove();
 		float school = eventCurrent.getAction().getSchool();
@@ -134,18 +136,17 @@ public class Student {
 		float satiety = eventCurrent.getAction().getSatiety();
 		float vitality = eventCurrent.getAction().getVitality();
 		
-		//temps en milliseconde -> tranche de 30 minutes : temps/(1000*60*30)
+		//Temps en millisecondes -> tranche de 30 minutes : temps/(1000*60*30)
 		int time = (int)(eventCurrent.getEnd().getTimeInMillis()/1800000 - eventCurrent.getStart().getTimeInMillis()/1800000);
 		
-		//Evenements qui n'impact pas que sur les stats liées à la santé
+		//Traitement uniquement pour les événements qui n'impactent pas que sur les stats liées à la santé
 		if(gaming != 0 || love != 0 || school != 0 || social != 0) {
 			gaming = gaming*getStudentProfile().getGaming()/100;
 			love = love*getStudentProfile().getLove()/100;
 			school = school*getStudentProfile().getSchool()/100;
 			social = social*getStudentProfile().getSocial()/100;
 			
-			//On gère la relaxation
-			//Elle dépend de la stat proéminente de l'event
+			//Gestion de la relaxation dépendamment de la stat proéminente de l'événement
 			ArrayList<Float> statList = new ArrayList<Float>();
 			statList.add(gaming);
 			statList.add(love);

@@ -20,7 +20,6 @@ public class ActionContainer {
 
 	private void setActions(ArrayList<Action> actions) {
 		this.actions = actions;
-		updateUI();
 	}
 	
 	public Action getAction(int index) {
@@ -45,34 +44,34 @@ public class ActionContainer {
 	}
 	
 	public ArrayList<Action> getNotAlwaysAvailableActions() {
-		ArrayList<Action> alwaysAvailableActions = new ArrayList<Action>();
+		ArrayList<Action> notAlwaysAvailableActions = new ArrayList<Action>();
 		for (Action action : actions) {
 			if (!action.isAlwaysAvailable())
-				alwaysAvailableActions.add(action);
+				notAlwaysAvailableActions.add(action);
 		}
-		return alwaysAvailableActions;
+		return notAlwaysAvailableActions;
 	}
 	
 	public void addAction(Action action) {
 		actions.add(action);
-		updateUI();
+		updateUI(getNotAlwaysAvailableActions());
 	}
 	
 	public void removeAction(int index) {
 		actions.remove(index);
-		updateUI();
+		updateUI(getNotAlwaysAvailableActions());
 	}
 
 	public void setController(MainSceneController controller) {
 		this.controller = controller;
-		updateUI();
+		updateUI(getNotAlwaysAvailableActions());
 	}
 	
-	private void updateUI() {
+	private void updateUI(ArrayList<Action> notAlwaysAvailableActions) {
 		if (controller != null)
 			Platform.runLater(new Runnable() {
 			    public void run() {
-					controller.initializeAddEventTypeComboBox(getNotAlwaysAvailableActions());
+					controller.initializeAddEventTypeComboBox(notAlwaysAvailableActions);
 			    }
 			});
 	}

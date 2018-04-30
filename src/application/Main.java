@@ -38,8 +38,7 @@ public class Main extends Application {
 			controller.setActionContainer(actionContainer);
 			
 			controller.printInConsole("Définition des actions réalisables");
-			//name;image;alwaysAvailable;proba;	gaming;love;school;social;	health;relaxation;satiety;vitality;	
-			//Les actions qui commencent par /!\\ sont mauvaises pour les stats de l'étudiant
+			//Actions pouvant être effectuées par l'étudiant quand il le souhaite
 			actionContainer.addAction(new Action("Dormir", null, true, 0, 0, 0, 0, 0, 0.5f, 0.5f, -1, 3));
 			actionContainer.addAction(new Action("Manger", null, true, 0, 0, 0, 0, 0, 0, 0.5f, 20, -0.5f));
 			actionContainer.addAction(new Action("Jouer en solo", null, true, 0, 2, -0.5f, -0.5f, -0.5f, -0.5f, 2, -3, -1.5f));
@@ -48,11 +47,13 @@ public class Main extends Application {
 			actionContainer.addAction(new Action("Réviser", null, true, 0, -0.5f, -0.5f, 3, -0.5f, -0.5f, 1, -3, -1.5f));
 			actionContainer.addAction(new Action("Se promener", null, true, 0, 0, 0, 0, 0, 0.5f, 1, -5, -2.5f));
 			actionContainer.addAction(new Action("Faire du sport", null, true, 0, 0, 0, 0, 0, 1, 1, -8, -4));
+			//Actions pouvant être effectuées par l'étudiant uniquement si elles lui sont proposées
 			actionContainer.addAction(new Action("Aller chez le médecin", null, false, 0, 0, 0, 0, 0, 20, -1, -3, -2));
 			actionContainer.addAction(new Action("Aller en LAN", null, false, 0, 6, -0.5f, -1, 2, -0.5f, 1, -4, -2.5f));
 			actionContainer.addAction(new Action("Aller en Cours", null, false, 0, -0.5f, -0.5f, 2, 1, -0.5f, 1, -4, -2.5f));
 			actionContainer.addAction(new Action("Sortir avec des amis", null, false, 0.4f, -0.5f, -0.5f, -0.5f, 4, 0, 2, -5, -2.5f));
 			actionContainer.addAction(new Action("Sortir avec son(sa) copain(ine)", null, false, 0.2f, -0.5f, 20, -0.5f, 0.5f, 0, 4, -5, -2.5f));
+			//Actions totalement mauvaises pour les stats de l'étudiant
 			actionContainer.addAction(new Action("/!\\ Maladie", null, false, 0.02f, 0, 0, 0, 0, -12, -6, -0.5f, -6));
 			actionContainer.addAction(new Action("/!\\ Controle", null, false, 0.1f, 0, 0, 0, 0, -1, -8, -4, -3));
 			actionContainer.addAction(new Action("/!\\ Dispute de couple", null, false, 0.04f, -1, -12, -1, -1, -1, -10, -4, -5));

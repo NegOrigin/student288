@@ -5,7 +5,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class EventGenerator {
-	private GameTime gameTime = null;
 	private EventContainer eventContainer = null;
 	private ActionContainer actionContainer = null;
 	
@@ -18,7 +17,6 @@ public class EventGenerator {
 	}
 
 	private void setGameTime(GameTime gameTime) {
-		this.gameTime = gameTime;
 		scheduler.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				Calendar now;

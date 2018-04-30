@@ -29,7 +29,6 @@ import modele.EventContainer;
 import modele.Event;
 
 public class MainSceneController implements Initializable {
-
     @FXML
     private Label dateLabel;
 
@@ -194,5 +193,4 @@ public class MainSceneController implements Initializable {
 		if (image!= null && Main.class.getResourceAsStream(image) != null)
 			activityImageView.setImage(new Image(Main.class.getResourceAsStream(image)));
 	}
-	
 }
