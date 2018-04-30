@@ -16,7 +16,7 @@ public class Student {
 	private StudentProfile studentProfile;
 	private StudentState studentState;
 	
-	private Timer scheduler = new Timer();
+	private Timer scheduler = new Timer(true);
 	private Solver solver;
 	private Event eventCurrent = null;
 	private Event eventNext = null;
@@ -91,15 +91,17 @@ public class Student {
 		Calendar start = gameTime.getNow();
 		Calendar end = (Calendar) start.clone();
 		end.add(Calendar.MINUTE, 120);
-		setEventCurrent(new Event(new Action("Rien", "../images/actions/chargement.gif", false, 0, 0, 0, 0, 0, 0, 0, 0, 0), start, end));
+		setEventCurrent(new Event(new Action("Rien", "../images/actions/chargement.gif", false, 0, 0, 0, 0, 0, 0, 0, 0, 0), start, end));	
 		setEventNext(solver.findEvent(getThis(), gameTime, eventContainer));
-
+		
 		scheduler.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				if ((gameTime.getNow().get(Calendar.MINUTE) == 1 || gameTime.getNow().get(Calendar.MINUTE) == 31))
 					if (eventCurrent.getEnd().before(gameTime.getNow())) {
 						setEventCurrent(eventNext);
 						setEventNext(solver.findEvent(getThis(), gameTime, eventContainer)); 
+						System.out.println(getThis());
+						System.out.println(" ");
 					}
 			}
 		}, gameTime.getMinute(), gameTime.getMinute());
@@ -149,7 +151,7 @@ public class Student {
 			statList.add(love);
 			statList.add(school);
 			statList.add(social);
-			
+
 			if(gaming == Collections.max(statList)) {
 				relaxation = relaxation*(getStudentProfile().getGaming()-50)/100;
 			}
@@ -162,6 +164,19 @@ public class Student {
 			else {
 				relaxation = relaxation*(getStudentProfile().getSocial()-50)/100;
 			}		
+		}
+		
+		if(health > 0) {
+			health = (100-studentState.getHealth())/(100-studentProfile.getHealth())*health;
+		}
+		if(relaxation > 0) {
+			relaxation = (100-studentState.getRelaxation())/(100-studentProfile.getRelaxation())*relaxation;
+		}
+		if(satiety > 0) {
+			satiety = (100-studentState.getSatiety())/(100-studentProfile.getSatiety())*satiety;
+		}
+		if(vitality > 0) {
+			vitality = (100-studentState.getVitality())/(100-studentProfile.getVitality())*vitality;
 		}
 		
 		updateStudentState(gaming*time, love*time, school*time, social*time, health*time, relaxation*time, satiety*time, vitality*time);

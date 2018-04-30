@@ -3,11 +3,11 @@ package modele;
 public class Node {
 	private Event event;
 	private Node parent;
-	private int pathScore;
+	private float pathScore;
 	private int depth;
 	private Student student;
 	
-	public Node(Event event, Node parent, int pathScore, int depth, Student student) {
+	public Node(Event event, Node parent, float pathScore, int depth, Student student) {
 		setEvent(event);
 		setParent(parent);
 		setPathScore(pathScore);
@@ -31,11 +31,11 @@ public class Node {
 		this.parent = parent;
 	}
 
-	public int getPathScore() {
+	public float getPathScore() {
 		return pathScore;
 	}
 
-	private void setPathScore(int pathScore) {
+	public void setPathScore(float pathScore) {
 		this.pathScore = pathScore;
 	}
 

@@ -34,7 +34,7 @@ public class EventContainer {
 		      return e1.getStart().compareTo(e2.getStart());
 			}
 		});
-		updateUI();
+		//updateUI(getEventsNotStarted(gameTime.getNow()));
 	}
 	
 	public Event getEvent(int index) {
@@ -44,11 +44,11 @@ public class EventContainer {
 	public ArrayList<Event> getEventsByDate(Calendar start) {
 		ArrayList<Event> eventsAt = new ArrayList<Event>();
 		for (Event event : events) {
-			if (event.getStart() == start)
+			if (event.getStart().equals(start))
 				eventsAt.add(event);
 		}
 		if (actioncontainer != null)
-			for (Action action : actioncontainer.getNotAlwaysAvailableActions()) {
+			for (Action action : actioncontainer.getAlwaysAvailableActions()) {
 				Calendar end = (Calendar) start.clone();
 				end.set(Calendar.MINUTE, end.get(Calendar.MINUTE)+30);
 				eventsAt.add(new Event(action, start, end));
@@ -72,12 +72,12 @@ public class EventContainer {
 		      return e1.getStart().compareTo(e2.getStart());
 			}
 		});
-		updateUI();
+		updateUI(getEventsNotStarted(gameTime.getNow()));
 	}
 	
 	public void removeEvent(int index) {
 		events.remove(index);
-		updateUI();
+		updateUI(getEventsNotStarted(gameTime.getNow()));
 	}
 
 	public void setGameTime(GameTime gameTime) {
@@ -85,7 +85,7 @@ public class EventContainer {
 		scheduler.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				if (gameTime.getNow().get(Calendar.MINUTE) == 0 || gameTime.getNow().get(Calendar.MINUTE) == 30)
-					updateUI();
+					updateUI(getEventsNotStarted(gameTime.getNow()));
 			}
 		}, gameTime.getMinute(), gameTime.getMinute());
 	}
@@ -96,14 +96,14 @@ public class EventContainer {
 
 	public void setController(MainSceneController controller) {
 		this.controller = controller;
-		updateUI();
+		updateUI(getEventsNotStarted(gameTime.getNow()));
 	}
 	
-	private void updateUI() {
+	private void updateUI(ArrayList<Event> events) {
 		if (controller != null)
 			Platform.runLater(new Runnable() {
 			    public void run() {
-					controller.refreshEventList(getEventsNotStarted(gameTime.getNow()));
+					controller.refreshEventList(events);
 			    }
 			});
 	}

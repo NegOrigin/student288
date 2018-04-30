@@ -45,10 +45,10 @@ public class StudentProfile {
 			break;
 		}
 
-		setHealth((int)(Math.random()*30));
-		setRelaxation((int)(Math.random()*30));
-		setSatiety((int)(Math.random()*30));
-		setVitality((int)(Math.random()*30));
+		setHealth((int)(Math.random()*30)+20);
+		setRelaxation((int)(Math.random()*30)+20);
+		setSatiety((int)(Math.random()*30)+20);
+		setVitality((int)(Math.random()*30)+20);
 	}
 	
 	public StudentProfile(StudentProfile profile) {

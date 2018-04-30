@@ -12,7 +12,7 @@ public class GameTime {
 	private Calendar now;
 	private int minute;
 	
-	private Timer scheduler = new Timer();
+	private Timer scheduler = new Timer(true);
 	
 	private MainSceneController controller = null;
 	

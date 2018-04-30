@@ -71,6 +71,14 @@ public class EventGenerator {
 		start.set(Calendar.DAY_OF_MONTH, start.get(Calendar.DAY_OF_MONTH)+1);
 		Calendar end = (Calendar) start.clone();
 		
-		//TODO
+		for (Action action : actionContainer.getNotAlwaysAvailableActions()) {
+			if (Math.random() < action.getProbability()) {
+				start.set(Calendar.HOUR_OF_DAY, (int)(Math.random()*15)+8);
+				start.set(Calendar.MINUTE, (int)(Math.round(Math.random())*30));
+				end = (Calendar) start.clone();
+				end.add(Calendar.MINUTE, (int)(Math.round(Math.random()*6+1)*30));
+				eventContainer.addEvent(new Event(action, (Calendar) start.clone(), (Calendar) end.clone()));
+			}
+		}
 	}
 }
