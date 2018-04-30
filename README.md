@@ -12,5 +12,5 @@ Projet réalisé dans le cadre du cours Intelligence Artificielle.
 
 Le devoir est développé sur Eclipse avec JavaFX.
 
-## Diagramme de classe
+## Diagramme de classes
 ![Image du diagramme de classe](https://raw.githubusercontent.com/NegOrigin/student288/master/ClassDiagrammStudent288v1.JPG)
