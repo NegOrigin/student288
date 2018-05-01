@@ -12,8 +12,6 @@ public class GameTime {
 	private Calendar now;
 	private int minute;
 	
-	private Timer scheduler = new Timer(true);
-	
 	private MainSceneController controller = null;
 	
 	public GameTime(int minute) {
@@ -45,6 +43,7 @@ public class GameTime {
 	}
 	
 	public void startGame() {
+		Timer scheduler = new Timer(true);
 		scheduler.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				now.add(Calendar.MINUTE, 1);

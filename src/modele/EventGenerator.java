@@ -8,8 +8,6 @@ public class EventGenerator {
 	private EventContainer eventContainer = null;
 	private ActionContainer actionContainer = null;
 	
-	private Timer scheduler = new Timer();
-	
 	public EventGenerator(GameTime gameTime, EventContainer eventContainer, ActionContainer actionContainer) {
 		setGameTime(gameTime);
 		setEventContainer(eventContainer);
@@ -17,6 +15,7 @@ public class EventGenerator {
 	}
 
 	private void setGameTime(GameTime gameTime) {
+		Timer scheduler = new Timer(true);
 		scheduler.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				Calendar now;
@@ -54,13 +53,13 @@ public class EventGenerator {
 			start.set(Calendar.MINUTE, 30);
 			end.set(Calendar.HOUR_OF_DAY, 12);
 			end.set(Calendar.MINUTE, 30);
-			eventContainer.addEvent(new Event(actionContainer.getActionByName("Aller en Cours"), (Calendar) start.clone(), (Calendar) end.clone()));
+			eventContainer.addEvent(new Event(actionContainer.getActionByName("Aller en cours"), (Calendar) start.clone(), (Calendar) end.clone()));
 			
 			start.set(Calendar.HOUR_OF_DAY, 14);
 			start.set(Calendar.MINUTE, 0);
 			end.set(Calendar.HOUR_OF_DAY, 17);
 			end.set(Calendar.MINUTE, 0);
-			eventContainer.addEvent(new Event(actionContainer.getActionByName("Aller en Cours"), (Calendar) start.clone(), (Calendar) end.clone()));
+			eventContainer.addEvent(new Event(actionContainer.getActionByName("Aller en cours"), (Calendar) start.clone(), (Calendar) end.clone()));
 		}
 	}
 	

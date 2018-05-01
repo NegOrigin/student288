@@ -15,7 +15,6 @@ public class Student {
 	private StudentProfile studentProfile;
 	private StudentState studentState;
 	
-	private Timer scheduler = new Timer(true);
 	private Solver solver;
 	private Event eventCurrent = null;
 	private Event eventNext = null;
@@ -80,7 +79,7 @@ public class Student {
 
 	private void setStudentState(StudentState studentState) {
 		this.studentState = studentState;
-		updateUI();
+		InitializeUI();
 	}
 
 	public void setGameTimeAndEventContainer(GameTime gameTime, EventContainer eventContainer) {
@@ -93,14 +92,13 @@ public class Student {
 		setEventCurrent(new Event(new Action("Rien", "../images/actions/chargement.gif", false, 0, 0, 0, 0, 0, 0, 0, 0, 0), start, end));	
 		setEventNext(solver.findEvent(getThis(), gameTime, eventContainer));
 		
+		Timer scheduler = new Timer(true);
 		scheduler.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				if ((gameTime.getNow().get(Calendar.MINUTE) == 1 || gameTime.getNow().get(Calendar.MINUTE) == 31))
 					if (eventCurrent.getEnd().before(gameTime.getNow())) {
 						setEventCurrent(eventNext);
-						setEventNext(solver.findEvent(getThis(), gameTime, eventContainer)); 
-						System.out.println(getThis());
-						System.out.println(" ");
+						setEventNext(solver.findEvent(getThis(), gameTime, eventContainer));
 					}
 			}
 		}, gameTime.getMinute(), gameTime.getMinute());
@@ -189,7 +187,7 @@ public class Student {
 
 	public void setController(MainSceneController controller) {
 		this.controller = controller;
-		updateUI();
+		InitializeUI();
 	}
 	
 	public int calculateHappiness() {
@@ -228,6 +226,16 @@ public class Student {
 	public void updateStudentState(float gaming, float love, float school, float social, float health, float relaxation, float satiety, float vitality) {
 		studentState.updateState(gaming, love, school, social, health, relaxation, satiety, vitality);
 		updateUI();
+	}
+	
+	private void InitializeUI() {
+		if (controller != null)
+			Platform.runLater(new Runnable() {
+			    public void run() {
+					controller.refreshStudentState(calculateHappiness(), studentState.getGaming(), studentState.getLove(), studentState.getSchool(), studentState.getSocial(), 
+							studentState.getHealth(), studentState.getRelaxation(), studentState.getSatiety(), studentState.getVitality());
+			    }
+			});
 	}
 	
 	private void updateUI() {

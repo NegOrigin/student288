@@ -12,8 +12,6 @@ import javafx.application.Platform;
 
 public class EventContainer {
 	private ArrayList<Event> events;
-	
-	private Timer scheduler = new Timer();
 
 	private GameTime gameTime = null;
 	private ActionContainer actioncontainer = null;
@@ -81,6 +79,7 @@ public class EventContainer {
 
 	public void setGameTime(GameTime gameTime) {
 		this.gameTime = gameTime;
+		Timer scheduler = new Timer(true);
 		scheduler.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				if (gameTime.getNow().get(Calendar.MINUTE) == 0 || gameTime.getNow().get(Calendar.MINUTE) == 30)
