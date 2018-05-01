@@ -79,7 +79,7 @@ public class Student {
 
 	private void setStudentState(StudentState studentState) {
 		this.studentState = studentState;
-		InitializeUI();
+		updateUI();
 	}
 
 	public void setGameTimeAndEventContainer(GameTime gameTime, EventContainer eventContainer) {
@@ -187,7 +187,7 @@ public class Student {
 
 	public void setController(MainSceneController controller) {
 		this.controller = controller;
-		InitializeUI();
+		updateUI();
 	}
 	
 	public int calculateHappiness() {
@@ -226,16 +226,6 @@ public class Student {
 	public void updateStudentState(float gaming, float love, float school, float social, float health, float relaxation, float satiety, float vitality) {
 		studentState.updateState(gaming, love, school, social, health, relaxation, satiety, vitality);
 		updateUI();
-	}
-	
-	private void InitializeUI() {
-		if (controller != null)
-			Platform.runLater(new Runnable() {
-			    public void run() {
-					controller.refreshStudentState(calculateHappiness(), studentState.getGaming(), studentState.getLove(), studentState.getSchool(), studentState.getSocial(), 
-							studentState.getHealth(), studentState.getRelaxation(), studentState.getSatiety(), studentState.getVitality());
-			    }
-			});
 	}
 	
 	private void updateUI() {
